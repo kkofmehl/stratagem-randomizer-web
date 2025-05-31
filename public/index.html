@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helldivers 2 Loadout Randomizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Helldivers 2 Loadout Randomizer</h1>
+            <p>For Super Earth! Press the button to generate a random loadout.</p>
+        </header>
+        
+        <div class="controls">
+            <button id="randomize-all-btn" class="primary-btn">Roll Complete Loadout</button>
+        </div>
+        
+        <div class="loadout-container">
+            <div class="loadout">
+                <div class="loadout-section">
+                    <div class="section-header">
+                        <h2>Primary Weapon</h2>
+                        <button class="roll-btn" data-type="primary">Roll</button>
+                    </div>
+                    <div id="primary" class="loadout-item">Press the button to randomize</div>
+                </div>
+                
+                <div class="loadout-section">
+                    <div class="section-header">
+                        <h2>Secondary Weapon</h2>
+                        <button class="roll-btn" data-type="secondary">Roll</button>
+                    </div>
+                    <div id="secondary" class="loadout-item">Press the button to randomize</div>
+                </div>
+                
+                <div class="loadout-section">
+                    <div class="section-header">
+                        <h2>Grenade</h2>
+                        <button class="roll-btn" data-type="grenade">Roll</button>
+                    </div>
+                    <div id="grenade" class="loadout-item">Press the button to randomize</div>
+                </div>
+                
+                <div class="loadout-section">
+                    <div class="section-header">
+                        <h2>Stratagems</h2>
+                        <button class="roll-btn" data-type="stratagems">Roll</button>
+                    </div>
+                    <div id="stratagems" class="loadout-items">
+                        <div class="loadout-item">Press the button to randomize</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

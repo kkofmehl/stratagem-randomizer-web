@@ -38,6 +38,44 @@ To run the application in development mode with automatic reloading:
 npm run dev
 ```
 
+## Automated Testing
+
+This project includes acceptance tests using Playwright to verify that the application works correctly.
+
+### Setup Testing Environment
+
+Run the setup script to install browser dependencies:
+```
+./setup-tests.sh
+```
+
+### Running Tests
+
+Run all tests in headless mode:
+```
+npm test
+```
+
+Run tests with UI mode for debugging:
+```
+npm run test:ui
+```
+
+Run tests in debug mode:
+```
+npm run test:debug
+```
+
+### Test Coverage
+
+The acceptance tests verify:
+- Basic page loading and UI elements
+- Randomization functionality for all loadout items
+- Individual roll buttons for specific loadout sections
+- Stratagem options modal functionality
+- Consistency across randomizations
+- Proper application of stratagem filters
+
 ## Technologies Used
 
 - Node.js
@@ -45,6 +83,7 @@ npm run dev
 - Vanilla JavaScript
 - HTML5
 - CSS3
+- Playwright (testing)
 
 ## License
 

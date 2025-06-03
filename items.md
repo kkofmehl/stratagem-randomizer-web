@@ -71,6 +71,53 @@
 
 ──────────────────────── STRATAGEMS ────────────────────────
 
+
+________________________ DEFENSE ___________________________
+
+• HMG Placement
+• Shield Generator Relay
+• Tesla Tower
+• Grenadire Battlement
+• Anti-Personnel Minefield
+• Incendiary Minefield
+• Anti-Tank Mines
+• Gas Mines
+• Gatling Sentry
+• Machine-Gun Sentry
+• Auto-Cannon Sentry
+• Mortar Sentry
+• Rocket Sentry
+• EMS (Stun) Mortar Sentry
+• Flamethrower Sentry
+• E/AT-12 Anti-Tank Placement
+
+________________________ EAGLES ____________________________
+
+• Eagle Airstrike (strafe)
+• Eagle Airstrike (Bombs)
+• Eagle Cluster Bomb
+• Eagle Napalm Airstrike
+• Eagle 500 kg Bomb
+• Eagle Smoke Strike
+• Eagle 110mm Rocket Pods
+
+________________________ ORBITALS __________________________
+
+• Orbital Gatling Barrage
+• Orbital Airburst Strike
+• Orbital Walking Barrage
+• Orbital Laser Strike
+• Orbital 120 mm HE Barrage
+• Orbital 380 mm HE Barrage
+• Orbital Railcannon Strike
+• Orbital Napalm Barrage
+• Orbital EMS Strike
+• Orbital Gas Strike
+• Orbital Precision Strike
+• Orbital Smoke Strike
+
+________________________SUPPORT ____________________________
+
 • MG-43 Machine-Gun
 • MG-206 Heavy Machine-Gun
 • M-105 Stalwart (LMG)
@@ -84,57 +131,23 @@
 • FAF-14 Spear
 • EAT-17 Disposable Rocket Launcher
 • Sta-X3 W.A.S.P Launcher
-• Orbital Gatling Barrage
-• Orbital Airburst Strike
-• Orbital Walking Barrage
-• Orbital Laser Strike
-• Orbital 120 mm HE Barrage
-• Orbital 380 mm HE Barrage
-• Orbital Railcannon Strike
-• Orbital Napalm Barrage
-• Eagle Airstrike (strafe)
-• Eagle Airstrike (Bombs)
-• Eagle Cluster Bomb
-• Eagle Napalm Airstrike
-• Eagle 500 kg Bomb
-• Eagle Smoke Strike
-• Eagle 110mm Rocket Pods
-• Jump Pack
-• M-102 Fast Recon Vehicle
-• Orbital EMS Strike
-• Orbital Gas Strike
-• Orbital Precision Strike
-• Orbital Smoke Strike
-• HMG Placement
-• Shield Generator Relay
-• Tesla Tower
-• Grenadire Battlement
-• ARC-3 Arc-Thrower
 • LAS-98 Laser Cannon
 • M-29 Quasar Cannon
 • GL-21 Gernade Launcher
+• Jump Pack
+• M-102 Fast Recon Vehicle
+• ARC-3 Arc-Thrower
 • Supply Pack (ammo/med)
 • Shield Generator Pack
 • Ballistic Shield Backpack
 • Guard Dog II Rover (Laser)
-• Anti-Personnel Minefield
-• Incendiary Minefield
-• Anti-Tank Mines
-• Gas Mines
-• Gatling Sentry
-• Machine-Gun Sentry
-• Auto-Cannon Sentry
-• Mortar Sentry
-• Rocket Sentry
-• EMS (Stun) Mortar Sentry
+
 • Guard Dog Rover (MG)
 • EXO-45 Patriot Exosuit
 • EXO-49 "Emancipator" Exosuit (rail-gun)
 • TX-41 Sterilizer
 • Guard Dog III Rover (Gas)
 • SH-51 Directional Shield
-• Flamethrower Sentry
-• E/AT-12 Anti-Tank Placement
 • Hover Pack
 • One True Flag
 • Portable Hellbomb

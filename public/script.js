@@ -8,6 +8,139 @@ document.addEventListener('DOMContentLoaded', () => {
     const boosterElement = document.getElementById('booster');
     const stratagemsElement = document.getElementById('stratagems');
     
+    // Modal elements
+    const stratagemsOptionsBtn = document.getElementById('stratagem-options-btn');
+    const stratagemsOptionsModal = document.getElementById('stratagem-options-modal');
+    const closeModalBtn = document.querySelector('.close');
+    const applyOptionsBtn = document.getElementById('apply-options-btn');
+    
+    // Stratagem category options - initialize with values from radio buttons
+    let stratagemOptions = {
+        defense: document.querySelector('input[name="defense"]:checked')?.value || 'Normal',
+        eagles: document.querySelector('input[name="eagles"]:checked')?.value || 'Normal',
+        orbitals: document.querySelector('input[name="orbitals"]:checked')?.value || 'Normal',
+        support: document.querySelector('input[name="support"]:checked')?.value || 'Normal'
+    };
+    
+    console.log("Initial stratagem options:", stratagemOptions);
+    
+    // Function to apply option constraints
+    const applyOptionConstraints = () => {
+        // Reset all radio buttons to enabled state
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.disabled = false;
+        });
+        
+        // Reset all category styling
+        document.querySelectorAll('.stratagem-category').forEach(category => {
+            category.classList.remove('disabled-option');
+        });
+        
+        // Check if any category has "Only" selected
+        const onlyCategory = Object.entries(stratagemOptions).find(([_, value]) => value === 'Only');
+        
+        if (onlyCategory) {
+            // Get the name of the category with "Only" selected
+            const [onlyCategoryName] = onlyCategory;
+            
+            // Make sure the "Only" option is checked in the UI
+            const onlyCategoryRadio = document.querySelector(`input[name="${onlyCategoryName}"][value="Only"]`);
+            if (onlyCategoryRadio && !onlyCategoryRadio.checked) {
+                onlyCategoryRadio.checked = true;
+            }
+            
+            // Process each category
+            document.querySelectorAll('.stratagem-category').forEach(category => {
+                const categoryNameElement = category.querySelector('h3');
+                const categoryName = categoryNameElement.textContent.toLowerCase();
+                
+                if (categoryName !== onlyCategoryName.toUpperCase()) {
+                    // Set other categories to "No"
+                    const noRadioInput = category.querySelector('input[value="No"]');
+                    if (noRadioInput) {
+                        noRadioInput.checked = true;
+                        
+                        // Update the options object
+                        const lowerCaseCategoryName = categoryName.toLowerCase();
+                        stratagemOptions[lowerCaseCategoryName] = 'No';
+                    }
+                    
+                    // Disable all options except "No" for other categories
+                    category.querySelectorAll('input[type="radio"]').forEach(input => {
+                        if (input.value !== 'No') {
+                            input.disabled = true;
+                        }
+                    });
+                    
+                    // Add visual styling to indicate the category is disabled
+                    category.classList.add('disabled-option');
+                }
+            });
+            return;
+        }
+        
+        // Count how many categories are set to "Heavy"
+        const heavyCategoryEntries = Object.entries(stratagemOptions)
+            .filter(([_, value]) => value === 'Heavy');
+        
+        const heavyCategories = heavyCategoryEntries.map(([category]) => category);
+        
+        if (heavyCategories.length >= 2) {
+            // If two categories are already "Heavy", set other categories to "No" and disable all options except "No"
+            document.querySelectorAll('.stratagem-category').forEach(category => {
+                const categoryNameElement = category.querySelector('h3');
+                const categoryName = categoryNameElement.textContent.toLowerCase();
+                
+                if (!heavyCategories.includes(categoryName.toLowerCase())) {
+                    // Set to "No"
+                    const radioInput = category.querySelector('input[value="No"]');
+                    if (radioInput && !radioInput.checked) {
+                        radioInput.checked = true;
+                        // Update the options object
+                        stratagemOptions[categoryName.toLowerCase()] = 'No';
+                    }
+                    
+                    // Disable all options except "No"
+                    category.querySelectorAll('input[type="radio"]').forEach(input => {
+                        if (input.value !== 'No') {
+                            input.disabled = true;
+                        }
+                    });
+                }
+            });
+        } else {
+            // Enable all options for all categories
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.disabled = false;
+            });
+        }
+    };
+    
+    // Initialize option constraints
+    applyOptionConstraints();
+    
+    // Function to handle stratagem option changes
+    const handleStratagemOptionChange = () => {
+        // Get the current values from the radio buttons
+        const defenseOption = document.querySelector('input[name="defense"]:checked')?.value || 'Normal';
+        const eaglesOption = document.querySelector('input[name="eagles"]:checked')?.value || 'Normal';
+        const orbitalsOption = document.querySelector('input[name="orbitals"]:checked')?.value || 'Normal';
+        const supportOption = document.querySelector('input[name="support"]:checked')?.value || 'Normal';
+        
+        // Store the current options
+        stratagemOptions = {
+            defense: defenseOption,
+            eagles: eaglesOption,
+            orbitals: orbitalsOption,
+            support: supportOption
+        };
+        
+        console.log("Stratagem options updated:", stratagemOptions);
+        
+        // Apply the constraints
+        applyOptionConstraints();
+    };
+    
     // Function to get a complete random loadout from the API
     const getRandomLoadout = async () => {
         try {
@@ -15,7 +148,16 @@ document.addEventListener('DOMContentLoaded', () => {
             randomizeAllBtn.classList.add('spinning');
             randomizeAllBtn.disabled = true;
             
-            const response = await fetch('/api/random-loadout');
+            // Build query string with stratagem options
+            const queryParams = new URLSearchParams();
+            queryParams.append('defense', stratagemOptions.defense);
+            queryParams.append('eagles', stratagemOptions.eagles);
+            queryParams.append('orbitals', stratagemOptions.orbitals);
+            queryParams.append('support', stratagemOptions.support);
+            
+            console.log("Sending stratagem options to server:", Object.fromEntries(queryParams));
+            
+            const response = await fetch(`/api/random-loadout?${queryParams.toString()}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch loadout');
             }
@@ -42,12 +184,28 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('spinning');
             button.disabled = true;
             
-            const response = await fetch(`/api/random/${type}`);
+            let url = `/api/random/${type}`;
+            
+            // Add stratagem options if type is 'stratagems'
+            if (type === 'stratagems') {
+                const queryParams = new URLSearchParams();
+                queryParams.append('defense', stratagemOptions.defense);
+                queryParams.append('eagles', stratagemOptions.eagles);
+                queryParams.append('orbitals', stratagemOptions.orbitals);
+                queryParams.append('support', stratagemOptions.support);
+                
+                console.log(`Rolling stratagems with options: DEFENSE=${stratagemOptions.defense}, EAGLES=${stratagemOptions.eagles}, ORBITALS=${stratagemOptions.orbitals}, SUPPORT=${stratagemOptions.support}`);
+                
+                url += `?${queryParams.toString()}`;
+            }
+            
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`Failed to fetch random ${type}`);
             }
             
             const data = await response.json();
+            console.log(`Received ${type} data:`, data);
             
             // Update only the specific part of the UI
             updateUI(data);
@@ -111,6 +269,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
+    // Add event listeners for stratagem option changes
+    document.querySelectorAll('input[name="defense"], input[name="eagles"], input[name="orbitals"], input[name="support"]').forEach(input => {
+        input.addEventListener('change', (event) => {
+            // Explicitly set the checked state when "Only" is selected
+            if (event.target.value === 'Only') {
+                event.target.checked = true;
+                
+                // Set all other categories to "No"
+                const targetName = event.target.name;
+                const categories = ['defense', 'eagles', 'orbitals', 'support'];
+                
+                categories.forEach(category => {
+                    if (category !== targetName) {
+                        const noRadio = document.querySelector(`input[name="${category}"][value="No"]`);
+                        if (noRadio) {
+                            noRadio.checked = true;
+                        }
+                    }
+                });
+            }
+            
+            // Update the options object and apply constraints
+            handleStratagemOptionChange();
+        });
+    });
+    
     // Add click event listener to the randomize all button
     randomizeAllBtn.addEventListener('click', getRandomLoadout);
     
@@ -121,4 +305,56 @@ document.addEventListener('DOMContentLoaded', () => {
             getRandomItem(type, button);
         });
     });
+    
+    // Modal event listeners
+    stratagemsOptionsBtn.addEventListener('click', () => {
+        // Update radio buttons to match current options before showing the modal
+        document.querySelector(`input[name="defense"][value="${stratagemOptions.defense}"]`).checked = true;
+        document.querySelector(`input[name="eagles"][value="${stratagemOptions.eagles}"]`).checked = true;
+        document.querySelector(`input[name="orbitals"][value="${stratagemOptions.orbitals}"]`).checked = true;
+        document.querySelector(`input[name="support"][value="${stratagemOptions.support}"]`).checked = true;
+        
+        // Apply constraints to ensure UI is consistent
+        applyOptionConstraints();
+        
+        // Show the modal
+        stratagemsOptionsModal.style.display = 'block';
+    });
+    
+    closeModalBtn.addEventListener('click', () => {
+        stratagemsOptionsModal.style.display = 'none';
+    });
+    
+    applyOptionsBtn.addEventListener('click', () => {
+        // Apply options (they're already updated via the change event listeners)
+        console.log("Applied stratagem options:", stratagemOptions);
+        
+        // Close modal
+        stratagemsOptionsModal.style.display = 'none';
+        
+        // Refresh stratagems with new options
+        getRandomItem('stratagems', document.querySelector('.roll-btn[data-type="stratagems"]'));
+    });
+    
+    // Close modal when clicking outside of it
+    window.addEventListener('click', (event) => {
+        if (event.target === stratagemsOptionsModal) {
+            stratagemsOptionsModal.style.display = 'none';
+        }
+    });
+    
+    // Add CSS for disabled options
+    const style = document.createElement('style');
+    style.textContent = `
+        .disabled-option {
+            opacity: 0.6;
+        }
+        .disabled-option h3::after {
+            content: " (Disabled)";
+            font-size: 0.8em;
+            font-style: italic;
+            color: #888;
+        }
+    `;
+    document.head.appendChild(style);
 }); 

@@ -15,6 +15,7 @@
         
         <div class="controls">
             <button id="randomize-all-btn" class="primary-btn">Roll Complete Loadout</button>
+            <button id="stratagem-options-btn" class="secondary-btn">Stratagem Options</button>
         </div>
         
         <div class="loadout-container">
@@ -68,6 +69,124 @@
                         <div class="loadout-item">Press the button to randomize</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stratagem Options Modal -->
+    <div id="stratagem-options-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Stratagem Options</h2>
+            
+            <div class="stratagem-options">
+                <div class="stratagem-category">
+                    <h3>DEFENSE</h3>
+                    <div class="option-group">
+                        <label>
+                            <input type="radio" name="defense" value="Normal" checked>
+                            <span>Normal</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="defense" value="No">
+                            <span>No DEFENSE</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="defense" value="Only">
+                            <span>Only DEFENSE</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="defense" value="Heavy">
+                            <span>Heavy DEFENSE</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="defense" value="Light">
+                            <span>Light DEFENSE</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="stratagem-category">
+                    <h3>EAGLES</h3>
+                    <div class="option-group">
+                        <label>
+                            <input type="radio" name="eagles" value="Normal" checked>
+                            <span>Normal</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="eagles" value="No">
+                            <span>No EAGLES</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="eagles" value="Only">
+                            <span>Only EAGLES</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="eagles" value="Heavy">
+                            <span>Heavy EAGLES</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="eagles" value="Light">
+                            <span>Light EAGLES</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="stratagem-category">
+                    <h3>ORBITALS</h3>
+                    <div class="option-group">
+                        <label>
+                            <input type="radio" name="orbitals" value="Normal" checked>
+                            <span>Normal</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="orbitals" value="No">
+                            <span>No ORBITALS</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="orbitals" value="Only">
+                            <span>Only ORBITALS</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="orbitals" value="Heavy">
+                            <span>Heavy ORBITALS</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="orbitals" value="Light">
+                            <span>Light ORBITALS</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="stratagem-category">
+                    <h3>SUPPORT</h3>
+                    <div class="option-group">
+                        <label>
+                            <input type="radio" name="support" value="Normal" checked>
+                            <span>Normal</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="support" value="No">
+                            <span>No SUPPORT</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="support" value="Only">
+                            <span>Only SUPPORT</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="support" value="Heavy">
+                            <span>Heavy SUPPORT</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="support" value="Light">
+                            <span>Light SUPPORT</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button id="apply-options-btn" class="primary-btn">Apply Options</button>
             </div>
         </div>
     </div>

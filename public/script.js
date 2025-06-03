@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const primaryElement = document.getElementById('primary');
     const secondaryElement = document.getElementById('secondary');
     const grenadeElement = document.getElementById('grenade');
+    const armorElement = document.getElementById('armor');
+    const boosterElement = document.getElementById('booster');
     const stratagemsElement = document.getElementById('stratagems');
     
     // Function to get a complete random loadout from the API
@@ -75,6 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update grenade if present in data
         if (data.grenade) {
             grenadeElement.textContent = data.grenade;
+        }
+        
+        // Update armor if present in data
+        if (data.armor) {
+            armorElement.textContent = data.armor;
+        }
+        
+        // Update booster if present in data
+        if (data.booster) {
+            boosterElement.textContent = data.booster;
         }
         
         // Update stratagems if present in data

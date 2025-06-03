@@ -25,6 +25,14 @@ const parseItemsFile = () => {
     },
     stratagems: {
       start: '──────────────────────── STRATAGEMS ────────────────────────',
+      end: '──────────────────────── ARMOR SETS ────────────────────────'
+    },
+    armor: {
+      start: '──────────────────────── ARMOR SETS ────────────────────────',
+      end: '──────────────────────── BOOSTERS ────────────────────────'
+    },
+    boosters: {
+      start: '──────────────────────── BOOSTERS ────────────────────────',
       end: null
     }
   };
@@ -34,7 +42,10 @@ const parseItemsFile = () => {
   // Extract items for each category
   for (const [category, { start, end }] of Object.entries(categories)) {
     const startIndex = content.indexOf(start);
-    if (startIndex === -1) continue;
+    if (startIndex === -1) {
+      console.log(`Category ${category} not found`);
+      continue;
+    }
     
     const startPos = startIndex + start.length;
     const endIndex = end ? content.indexOf(end, startPos) : content.length;
@@ -43,15 +54,22 @@ const parseItemsFile = () => {
     // Extract items from the section
     const lines = sectionText.split('\n').filter(line => line.trim() !== '');
     
-    // Special handling for stratagems which have bullet points
-    if (category === 'stratagems') {
-      items[category] = lines
-        .filter(line => line.includes('•'))
-        .map(line => line.split('•')[1].trim());
-    } else {
-      items[category] = lines.filter(line => !line.startsWith('──') && line.trim() !== '');
-    }
+    // All categories now use bullet points
+    items[category] = lines
+      .filter(line => line.includes('•'))
+      .map(line => line.split('•')[1].trim());
+    
+    console.log(`Category ${category}: found ${items[category].length} items`);
   }
+
+  console.log('Parsed items summary:', {
+    primary: items.primary?.length || 0,
+    secondary: items.secondary?.length || 0,
+    grenades: items.grenades?.length || 0,
+    stratagems: items.stratagems?.length || 0,
+    armor: items.armor?.length || 0,
+    boosters: items.boosters?.length || 0
+  });
 
   return items;
 };
@@ -82,11 +100,31 @@ const getRandomStratagems = (stratagems, count = 4) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // API endpoints for individual item types
+app.get('/api/debug', (req, res) => {
+  try {
+    const items = parseItemsFile();
+    res.json({
+      primaryCount: items.primary?.length || 0,
+      secondaryCount: items.secondary?.length || 0,
+      grenadesCount: items.grenades?.length || 0,
+      stratagemsCount: items.stratagems?.length || 0,
+      armorCount: items.armor?.length || 0,
+      boostersCount: items.boosters?.length || 0,
+      firstArmor: items.armor?.[0] || 'None',
+      firstBooster: items.boosters?.[0] || 'None'
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/random/:type', (req, res) => {
   try {
     const { type } = req.params;
     const items = parseItemsFile();
     
+    console.log("Endpoint called with type:", type);
+
     let result;
     
     switch (type) {
@@ -101,6 +139,12 @@ app.get('/api/random/:type', (req, res) => {
         break;
       case 'stratagems':
         result = { stratagems: getRandomStratagems(items.stratagems) };
+        break;
+      case 'armor':
+        result = { armor: getRandomItem(items.armor) };
+        break;
+      case 'booster':
+        result = { booster: getRandomItem(items.boosters) };
         break;
       default:
         return res.status(400).json({ error: 'Invalid item type' });
@@ -122,6 +166,8 @@ app.get('/api/random-loadout', (req, res) => {
       primary: getRandomItem(items.primary),
       secondary: getRandomItem(items.secondary),
       grenade: getRandomItem(items.grenades),
+      armor: getRandomItem(items.armor),
+      booster: getRandomItem(items.boosters),
       stratagems: getRandomStratagems(items.stratagems)
     };
     

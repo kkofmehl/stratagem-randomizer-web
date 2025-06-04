@@ -24,12 +24,12 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 10, 10, 0.85); /* Dark overlay to fade the background */
+    background-color: rgba(10, 10, 10, 0.85);
     z-index: -1;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 2rem;
     position: relative;
@@ -38,19 +38,41 @@ body::before {
 
 header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff9800, transparent);
 }
 
 header h1 {
     color: #ff9800;
     margin-bottom: 0.5rem;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #ccc;
 }
 
 .controls {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
 }
 
 button {
@@ -62,21 +84,64 @@ button {
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 button:hover {
     background-color: #ffb74d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .primary-btn {
     padding: 1rem 2rem;
     font-size: 1.2rem;
     background-color: #ff5722;
+    position: relative;
+    z-index: 1;
 }
 
 .primary-btn:hover {
     background-color: #ff7043;
+}
+
+.secondary-btn {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #ff9800;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.secondary-btn:active {
+    background-color: #2a2a2a;
 }
 
 .roll-btn {
@@ -84,17 +149,22 @@ button:hover {
     font-size: 0.9rem;
     background-color: #3d3d3d;
     color: #e0e0e0;
+    border-radius: 3px;
+    border: 1px solid #555;
 }
 
 .roll-btn:hover {
     background-color: #555;
+    border-color: #ff9800;
 }
 
 .loadout-container {
-    background-color: #1a1a1a;
+    background-color: rgba(26, 26, 26, 0.95);
     border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid #333;
 }
 
 .loadout {
@@ -103,18 +173,36 @@ button:hover {
     gap: 1.5rem;
 }
 
+.loadout-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 1rem;
+    background-color: rgba(40, 40, 40, 0.5);
+    border: 1px solid #333;
+}
+
+.loadout-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.15);
+}
+
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    border-bottom: 2px solid #333;
-    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.8rem;
 }
 
 .section-header h2 {
     color: #ff9800;
     margin-bottom: 0;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .loadout-item {
@@ -123,6 +211,14 @@ button:hover {
     border-radius: 4px;
     margin-bottom: 0.5rem;
     border-left: 4px solid #ff9800;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.loadout-item:hover {
+    background-color: #333;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Stratagem item with icon */
@@ -130,18 +226,32 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: #2a2a2a;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #ff9800;
+    transition: all 0.3s ease;
+}
+
+.stratagem-item:hover {
+    background-color: #333;
+    transform: translateX(3px);
 }
 
 .stratagem-icon {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 4px;
     background-color: #333;
     object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid #555;
 }
 
 .stratagem-name {
     flex: 1;
+    font-weight: 500;
 }
 
 .loadout-items {
@@ -153,6 +263,18 @@ button:hover {
 @media (max-width: 768px) {
     .loadout {
         grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .loadout-container {
+        padding: 1.5rem;
     }
 }
 
@@ -186,19 +308,33 @@ button:hover {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(3px);
 }
 
 .modal-content {
     background-color: #222;
     margin: 5% auto;
-    padding: 20px;
+    padding: 2rem;
     border: 1px solid #444;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 80%;
     max-width: 600px;
     max-height: 80vh;
     overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .close {
@@ -207,11 +343,12 @@ button:hover {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .close:hover,
 .close:focus {
-    color: #fff;
+    color: #ff9800;
     text-decoration: none;
 }
 
@@ -223,19 +360,31 @@ button:hover {
     margin-bottom: 20px;
     padding: 15px;
     background-color: #333;
-    border-radius: 5px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    border-left: 3px solid #ff9800;
+    transition: all 0.3s ease;
+}
+
+.stratagem-category:hover {
+    background-color: #383838;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .stratagem-category h3 {
     margin-top: 0;
     margin-bottom: 10px;
     color: #ffcc00;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .option-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .option-group label {
@@ -243,22 +392,42 @@ button:hover {
     align-items: center;
     margin-right: 15px;
     cursor: pointer;
+    transition: transform 0.2s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    border: 1px solid transparent;
+}
+
+.option-group label:hover {
+    transform: translateY(-2px);
+    background-color: #3a3a3a;
+    border-color: #555;
 }
 
 .option-group input[type="radio"] {
     margin-right: 5px;
+    accent-color: #ff9800;
+}
+
+.option-group span {
+    transition: color 0.2s ease;
+}
+
+.option-group input[type="radio"]:checked + span {
+    color: #ff9800;
+    font-weight: 500;
 }
 
 .modal-actions {
-    margin-top: 20px;
+    margin-top: 1.5rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .disabled-option {
-    opacity: 0.75;
+    opacity: 0.6;
     position: relative;
-    background-color: #2a2a2a !important;
 }
 
 .disabled-option::before {
@@ -268,61 +437,204 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
     pointer-events: none;
     border-radius: 5px;
 }
 
 .disabled-option h3 {
-    color: #999 !important;
+    position: relative;
 }
 
 .disabled-option h3::after {
-    content: " (Disabled)";
-    font-size: 0.8em;
-    font-style: italic;
-    color: #888;
+    content: 'DISABLED';
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 0.7rem;
+    background-color: #ff5722;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
-/* Ensure disabled radio buttons have visual indication */
 input[type="radio"]:disabled + span {
-    opacity: 0.5;
-    text-decoration: line-through;
+    color: #777;
 }
 
 input[type="radio"]:disabled {
-    cursor: not-allowed;
+    opacity: 0.5;
 }
 
-/* Style for the currently active "Only" option */
 .stratagem-category input[value="Only"]:checked + span {
-    color: #ffcc00;
+    color: #4caf50;
     font-weight: bold;
 }
 
-/* Style for the currently active "No" option in disabled categories */
 .disabled-option input[value="No"]:checked + span {
-    color: #ff5252;
+    color: #f44336;
     font-weight: bold;
 }
 
-/* Add style for the secondary button */
-.secondary-btn {
-    background-color: #555;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
-.secondary-btn:hover {
-    background-color: #666;
+.header-logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+    filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.7));
 }
 
-.secondary-btn:active {
-    background-color: #444;
+footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-logo p {
+    font-weight: 600;
+    color: #ff9800;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-disclaimer p {
+    font-size: 0.8rem;
+    color: #888;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.stratagems-section {
+    grid-column: span 2;
+}
+
+.fas {
+    margin-right: 0.5rem;
+}
+
+.section-header .fas,
+.stratagem-category h3 .fas {
+    color: #ff9800;
+}
+
+.loadout-item {
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.loadout-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 152, 0, 0.05), transparent);
+    pointer-events: none;
+}
+
+/* Responsiveness for mobile */
+@media (max-width: 768px) {
+    .stratagems-section {
+        grid-column: span 1;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .header-logo {
+        margin-right: 0;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        flex-direction: column;
+    }
+}
+
+/* Animations for items when they appear */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loadout-item, .stratagem-item {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Button hover effects */
+.roll-btn:hover i {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(10deg); }
+}
+
+/* Add subtle pulsing highlight to main buttons */
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.4); }
+    50% { box-shadow: 0 0 0 5px rgba(255, 152, 0, 0.1); }
+}
+
+.primary-btn {
+    animation: pulse 2s infinite;
+}
+
+/* Enhance option group styling */
+.option-group label {
+    position: relative;
+    overflow: hidden;
+}
+
+.option-group input[type="radio"]:checked + span::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ff9800;
 } 

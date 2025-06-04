@@ -5,65 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helldivers 2 Loadout Randomizer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Helldivers 2 Loadout Randomizer</h1>
+            <div class="logo">
+                <img src="images/icons/helldivers_icon.png" alt="Helldivers 2 Logo" class="header-logo">
+                <h1>Helldivers 2 Loadout Randomizer</h1>
+            </div>
             <p>For Super Earth! Press the button to generate a random loadout.</p>
         </header>
         
         <div class="controls">
-            <button id="randomize-all-btn" class="primary-btn">Roll Complete Loadout</button>
-            <button id="stratagem-options-btn" class="secondary-btn">Stratagem Options</button>
+            <button id="randomize-all-btn" class="primary-btn"><i class="fas fa-dice"></i> Roll Complete Loadout</button>
+            <button id="stratagem-options-btn" class="secondary-btn"><i class="fas fa-sliders"></i> Stratagem Options</button>
         </div>
         
         <div class="loadout-container">
             <div class="loadout">
                 <div class="loadout-section">
                     <div class="section-header">
-                        <h2>Primary Weapon</h2>
-                        <button class="roll-btn" data-type="primary">Roll</button>
+                        <h2><i class="fas fa-gun"></i> Primary Weapon</h2>
+                        <button class="roll-btn" data-type="primary"><i class="fas fa-dice-one"></i> Roll</button>
                     </div>
                     <div id="primary" class="loadout-item">Press the button to randomize</div>
                 </div>
                 
                 <div class="loadout-section">
                     <div class="section-header">
-                        <h2>Secondary Weapon</h2>
-                        <button class="roll-btn" data-type="secondary">Roll</button>
+                        <h2><i class="fas fa-gun"></i> Secondary Weapon</h2>
+                        <button class="roll-btn" data-type="secondary"><i class="fas fa-dice-one"></i> Roll</button>
                     </div>
                     <div id="secondary" class="loadout-item">Press the button to randomize</div>
                 </div>
                 
                 <div class="loadout-section">
                     <div class="section-header">
-                        <h2>Grenade</h2>
-                        <button class="roll-btn" data-type="grenade">Roll</button>
+                        <h2><i class="fas fa-bomb"></i> Grenade</h2>
+                        <button class="roll-btn" data-type="grenade"><i class="fas fa-dice-one"></i> Roll</button>
                     </div>
                     <div id="grenade" class="loadout-item">Press the button to randomize</div>
                 </div>
                 
                 <div class="loadout-section">
                     <div class="section-header">
-                        <h2>Armor Set</h2>
-                        <button class="roll-btn" data-type="armor">Roll</button>
+                        <h2><i class="fas fa-shield"></i> Armor Set</h2>
+                        <button class="roll-btn" data-type="armor"><i class="fas fa-dice-one"></i> Roll</button>
                     </div>
                     <div id="armor" class="loadout-item">Press the button to randomize</div>
                 </div>
                 
                 <div class="loadout-section">
                     <div class="section-header">
-                        <h2>Booster</h2>
-                        <button class="roll-btn" data-type="booster">Roll</button>
+                        <h2><i class="fas fa-rocket"></i> Booster</h2>
+                        <button class="roll-btn" data-type="booster"><i class="fas fa-dice-one"></i> Roll</button>
                     </div>
                     <div id="booster" class="loadout-item">Press the button to randomize</div>
                 </div>
                 
-                <div class="loadout-section">
+                <div class="loadout-section stratagems-section">
                     <div class="section-header">
-                        <h2>Stratagems</h2>
-                        <button class="roll-btn" data-type="stratagems">Roll</button>
+                        <h2><i class="fas fa-satellite-dish"></i> Stratagems</h2>
+                        <button class="roll-btn" data-type="stratagems"><i class="fas fa-dice-one"></i> Roll</button>
                     </div>
                     <div id="stratagems" class="loadout-items">
                         <div class="loadout-item">Press the button to randomize</div>
@@ -71,17 +75,29 @@
                 </div>
             </div>
         </div>
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/icons/helldivers_icon.png" alt="Helldivers 2 Logo" class="footer-icon">
+                    <p>HELLDIVERS™ 2 Loadout Randomizer</p>
+                </div>
+                <div class="footer-disclaimer">
+                    <p>For the glory of Super Earth! This is a fan-made tool and is not affiliated with Arrowhead Game Studios.</p>
+                </div>
+            </div>
+        </footer>
     </div>
     
     <!-- Stratagem Options Modal -->
     <div id="stratagem-options-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Stratagem Options</h2>
+            <h2><i class="fas fa-sliders"></i> Stratagem Options</h2>
             
             <div class="stratagem-options">
                 <div class="stratagem-category">
-                    <h3>DEFENSE</h3>
+                    <h3><i class="fas fa-shield-alt"></i> DEFENSE</h3>
                     <div class="option-group">
                         <label>
                             <input type="radio" name="defense" value="Normal" checked>
@@ -107,7 +123,7 @@
                 </div>
                 
                 <div class="stratagem-category">
-                    <h3>EAGLES</h3>
+                    <h3><i class="fas fa-fighter-jet"></i> EAGLES</h3>
                     <div class="option-group">
                         <label>
                             <input type="radio" name="eagles" value="Normal" checked>
@@ -133,7 +149,7 @@
                 </div>
                 
                 <div class="stratagem-category">
-                    <h3>ORBITALS</h3>
+                    <h3><i class="fas fa-satellite"></i> ORBITALS</h3>
                     <div class="option-group">
                         <label>
                             <input type="radio" name="orbitals" value="Normal" checked>
@@ -159,7 +175,7 @@
                 </div>
                 
                 <div class="stratagem-category">
-                    <h3>SUPPORT</h3>
+                    <h3><i class="fas fa-parachute-box"></i> SUPPORT</h3>
                     <div class="option-group">
                         <label>
                             <input type="radio" name="support" value="Normal" checked>
@@ -186,7 +202,7 @@
             </div>
             
             <div class="modal-actions">
-                <button id="apply-options-btn" class="primary-btn">Apply Options</button>
+                <button id="apply-options-btn" class="primary-btn"><i class="fas fa-check"></i> Apply Options</button>
             </div>
         </div>
     </div>

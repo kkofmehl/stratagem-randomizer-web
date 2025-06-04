@@ -5,61 +5,23 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Parse the items.md file to extract weapon and stratagem data
-const parseItemsFile = () => {
-  const content = fs.readFileSync(path.join(__dirname, 'items.md'), 'utf8');
-  
-  // Define categories and their patterns
-  const categories = {
-    primary: {
-      start: '──────────────────────── PRIMARY WEAPONS ────────────────────────',
-      end: '──────────────────────── SECONDARY WEAPONS ────────────────────────'
-    },
-    secondary: {
-      start: '──────────────────────── SECONDARY WEAPONS ────────────────────────',
-      end: '──────────────────────── HAND GRENADES ────────────────────────'
-    },
-    grenades: {
-      start: '──────────────────────── HAND GRENADES ────────────────────────',
-      end: '──────────────────────── STRATAGEMS ────────────────────────'
-    },
-    armor: {
-      start: '──────────────────────── ARMOR SETS ────────────────────────',
-      end: '──────────────────────── BOOSTERS ────────────────────────'
-    },
-    boosters: {
-      start: '──────────────────────── BOOSTERS ────────────────────────',
-      end: null
-    }
-  };
-
-  const items = {};
-
-  // Extract items for each category
-  for (const [category, { start, end }] of Object.entries(categories)) {
-    const startIndex = content.indexOf(start);
-    if (startIndex === -1) {
-      console.log(`Category ${category} not found`);
-      continue;
-    }
-    
-    const startPos = startIndex + start.length;
-    const endIndex = end ? content.indexOf(end, startPos) : content.length;
-    const sectionText = content.substring(startPos, endIndex).trim();
-    
-    // Extract items from the section
-    const lines = sectionText.split('\n').filter(line => line.trim() !== '');
-    
-    // All categories use bullet points
-    items[category] = lines
-      .filter(line => line.includes('•'))
-      .map(line => line.split('•')[1].trim());
-    
-    console.log(`Category ${category}: found ${items[category].length} items`);
-  }
-
-  // Load stratagems from JSON file
+// Load items and stratagems from JSON files
+const loadItemsData = () => {
   try {
+    // Load items from JSON file
+    const itemsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'items.json'), 'utf8'));
+    
+    // Create a simplified items object with just names for backwards compatibility
+    const items = {
+      primary: itemsData.PRIMARY.map(item => item.name),
+      secondary: itemsData.SECONDARY.map(item => item.name),
+      grenades: itemsData.GRENADES.map(item => item.name),
+      armor: itemsData.ARMOR.map(item => item.name),
+      boosters: itemsData.BOOSTERS.map(item => item.name),
+      itemsData: itemsData // Store the full data with icons
+    };
+
+    // Load stratagems from JSON file
     const stratagemsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'stratagems.json'), 'utf8'));
     
     // Create a flat list of all stratagems
@@ -75,21 +37,14 @@ const parseItemsFile = () => {
     items.stratagemCategories = stratagemCategories;
     items.stratagemsData = stratagemsData; // Store the full data with icons
     
+    console.log(`Loaded items from JSON: primary=${items.primary.length}, secondary=${items.secondary.length}, grenades=${items.grenades.length}, armor=${items.armor.length}, boosters=${items.boosters.length}`);
     console.log(`Loaded stratagems from JSON: ${allStratagems.length} stratagems (${Object.keys(stratagemCategories).join(', ')})`);
+
+    return items;
   } catch (error) {
-    console.error('Error loading stratagems.json:', error);
+    console.error('Error loading items or stratagems JSON:', error);
+    return {};
   }
-
-  console.log('Parsed items summary:', {
-    primary: items.primary?.length || 0,
-    secondary: items.secondary?.length || 0,
-    grenades: items.grenades?.length || 0,
-    stratagems: items.stratagems?.length || 0,
-    armor: items.armor?.length || 0,
-    boosters: items.boosters?.length || 0
-  });
-
-  return items;
 };
 
 // Function to get a random item from an array
@@ -248,126 +203,43 @@ const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, op
       }
     }
     
-    // If from a light category, check if we already have one from this category
     if (isFromLightCategory && lightCategoryItems[lightCategory]) {
-      // Already have one from this category, skip
+      // Skip this stratagem if we already have one from this light category
       availableStratagems.splice(index, 1);
       continue;
-    } else if (isFromLightCategory) {
-      lightCategoryItems[lightCategory] = true;
     }
     
     selectedStratagems.push(selectedStratagem);
+    
+    // If this was from a light category, mark it
+    if (isFromLightCategory) {
+      lightCategoryItems[lightCategory] = true;
+    }
+    
+    // Remove from available pool
     availableStratagems.splice(index, 1);
   }
   
-  console.log(`Selected ${selectedStratagems.length} stratagems with options`);
+  console.log(`Selected ${selectedStratagems.length} stratagems`);
   return selectedStratagems;
 };
 
+// Function to get a random item with full data including icon
+const getRandomItemWithData = (itemsArray, itemsData, category) => {
+  if (!itemsArray || itemsArray.length === 0) return null;
+  const randomName = itemsArray[Math.floor(Math.random() * itemsArray.length)];
+  return itemsData[category].find(item => item.name === randomName);
+};
+
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
-// API endpoints for individual item types
-app.get('/api/debug', (req, res) => {
-  try {
-    const items = parseItemsFile();
-    res.json({
-      primaryCount: items.primary?.length || 0,
-      secondaryCount: items.secondary?.length || 0,
-      grenadesCount: items.grenades?.length || 0,
-      stratagemsCount: items.stratagems?.length || 0,
-      armorCount: items.armor?.length || 0,
-      boostersCount: items.boosters?.length || 0,
-      firstArmor: items.armor?.[0] || 'None',
-      firstBooster: items.boosters?.[0] || 'None'
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+// Load item data on startup
+const items = loadItemsData();
 
-app.get('/api/random/:type', (req, res) => {
-  try {
-    const { type } = req.params;
-    const items = parseItemsFile();
-    
-    console.log("Endpoint called with type:", type);
-
-    let result;
-    
-    switch (type) {
-      case 'primary':
-        result = { primary: getRandomItem(items.primary) };
-        break;
-      case 'secondary':
-        result = { secondary: getRandomItem(items.secondary) };
-        break;
-      case 'grenade':
-        result = { grenade: getRandomItem(items.grenades) };
-        break;
-      case 'stratagems':
-        // Get the options from the query parameters and map to the correct case
-        const options = {
-          DEFENSE: req.query.defense || 'Normal',
-          EAGLES: req.query.eagles || 'Normal',
-          ORBITALS: req.query.orbitals || 'Normal',
-          SUPPORT: req.query.support || 'Normal'
-        };
-        
-        console.log("Stratagem options received:", options);
-        
-        // Get random stratagems with the specified options and include icons
-        result = { stratagems: getRandomStratagems(items.stratagems, items.stratagemCategories, items.stratagemsData, options) };
-        break;
-      case 'armor':
-        result = { armor: getRandomItem(items.armor) };
-        break;
-      case 'booster':
-        result = { booster: getRandomItem(items.boosters) };
-        break;
-      default:
-        return res.status(400).json({ error: 'Invalid item type' });
-    }
-    
-    res.json(result);
-  } catch (error) {
-    console.error(`Error generating random ${req.params.type}:`, error);
-    res.status(500).json({ error: `Failed to generate random ${req.params.type}` });
-  }
-});
-
-// API endpoint for stratagems with options
-app.get('/api/random/stratagems', (req, res) => {
-  try {
-    const items = parseItemsFile();
-    
-    // Get the options from the query parameters and map to the correct case
-    const options = {
-      DEFENSE: req.query.defense || 'Normal',
-      EAGLES: req.query.eagles || 'Normal',
-      ORBITALS: req.query.orbitals || 'Normal',
-      SUPPORT: req.query.support || 'Normal'
-    };
-    
-    console.log("Stratagem options received:", options);
-    
-    // Get random stratagems with the specified options
-    const stratagems = getRandomStratagems(items.stratagems, items.stratagemCategories, items.stratagemsData, options);
-    
-    res.json({ stratagems });
-  } catch (error) {
-    console.error('Error generating random stratagems:', error);
-    res.status(500).json({ error: 'Failed to generate random stratagems' });
-  }
-});
-
-// API endpoint to get random loadout with stratagem options
+// Route for getting a complete random loadout
 app.get('/api/random-loadout', (req, res) => {
   try {
-    const items = parseItemsFile();
-    
-    // Get the stratagem options from the query parameters and map to the correct case
     const stratagemOptions = {
       DEFENSE: req.query.defense || 'Normal',
       EAGLES: req.query.eagles || 'Normal',
@@ -375,48 +247,118 @@ app.get('/api/random-loadout', (req, res) => {
       SUPPORT: req.query.support || 'Normal'
     };
     
-    console.log("Loadout - stratagem options received:", stratagemOptions);
+    console.log("Generating random loadout with stratagem options:", stratagemOptions);
+    
+    // Get random items
+    const randomPrimary = getRandomItemWithData(items.primary, items.itemsData, 'PRIMARY');
+    const randomSecondary = getRandomItemWithData(items.secondary, items.itemsData, 'SECONDARY');
+    const randomGrenade = getRandomItemWithData(items.grenades, items.itemsData, 'GRENADES');
+    const randomArmor = getRandomItemWithData(items.armor, items.itemsData, 'ARMOR');
+    const randomBooster = getRandomItemWithData(items.boosters, items.itemsData, 'BOOSTERS');
+    
+    // Get 4 random stratagems
+    const randomStratagems = getRandomStratagems(
+      items.stratagems,
+      items.stratagemCategories,
+      items.stratagemsData,
+      stratagemOptions
+    );
     
     const loadout = {
-      primary: getRandomItem(items.primary),
-      secondary: getRandomItem(items.secondary),
-      grenade: getRandomItem(items.grenades),
-      armor: getRandomItem(items.armor),
-      booster: getRandomItem(items.boosters),
-      stratagems: getRandomStratagems(items.stratagems, items.stratagemCategories, items.stratagemsData, stratagemOptions)
+      primary: randomPrimary,
+      secondary: randomSecondary,
+      grenade: randomGrenade,
+      armor: randomArmor,
+      booster: randomBooster,
+      stratagems: randomStratagems
     };
     
+    console.log("Generated random loadout");
     res.json(loadout);
   } catch (error) {
-    console.error('Error generating loadout:', error);
-    res.status(500).json({ error: 'Failed to generate loadout' });
+    console.error('Error generating random loadout:', error);
+    res.status(500).json({ error: 'Failed to generate random loadout' });
   }
 });
 
-// API endpoint to get stratagem categories
-app.get('/api/stratagem-categories', (req, res) => {
+// Routes for getting random items of each type
+app.get('/api/random/primary', (req, res) => {
   try {
-    const items = parseItemsFile();
-    res.json(items.stratagemCategories);
+    const randomPrimary = getRandomItemWithData(items.primary, items.itemsData, 'PRIMARY');
+    res.json({ primary: randomPrimary });
   } catch (error) {
-    console.error('Error fetching stratagem categories:', error);
-    res.status(500).json({ error: 'Failed to fetch stratagem categories' });
+    console.error('Error getting random primary weapon:', error);
+    res.status(500).json({ error: 'Failed to get random primary weapon' });
   }
 });
 
-// Serve the main HTML page
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
-  
-  // Parse items on startup to check if everything is working
+app.get('/api/random/secondary', (req, res) => {
   try {
-    const items = parseItemsFile();
-    console.log(`Server initialized with ${items.stratagems?.length || 0} stratagems`);
+    const randomSecondary = getRandomItemWithData(items.secondary, items.itemsData, 'SECONDARY');
+    res.json({ secondary: randomSecondary });
   } catch (error) {
-    console.error('Error parsing items on startup:', error);
+    console.error('Error getting random secondary weapon:', error);
+    res.status(500).json({ error: 'Failed to get random secondary weapon' });
   }
+});
+
+app.get('/api/random/grenade', (req, res) => {
+  try {
+    const randomGrenade = getRandomItemWithData(items.grenades, items.itemsData, 'GRENADES');
+    res.json({ grenade: randomGrenade });
+  } catch (error) {
+    console.error('Error getting random grenade:', error);
+    res.status(500).json({ error: 'Failed to get random grenade' });
+  }
+});
+
+app.get('/api/random/booster', (req, res) => {
+  try {
+    const randomBooster = getRandomItemWithData(items.boosters, items.itemsData, 'BOOSTERS');
+    res.json({ booster: randomBooster });
+  } catch (error) {
+    console.error('Error getting random booster:', error);
+    res.status(500).json({ error: 'Failed to get random booster' });
+  }
+});
+
+app.get('/api/random/stratagems', (req, res) => {
+  try {
+    const stratagemOptions = {
+      DEFENSE: req.query.defense || 'Normal',
+      EAGLES: req.query.eagles || 'Normal',
+      ORBITALS: req.query.orbitals || 'Normal',
+      SUPPORT: req.query.support || 'Normal'
+    };
+    
+    console.log("Getting random stratagems with options:", stratagemOptions);
+    
+    const randomStratagems = getRandomStratagems(
+      items.stratagems,
+      items.stratagemCategories,
+      items.stratagemsData,
+      stratagemOptions
+    );
+    
+    res.json({ stratagems: randomStratagems });
+  } catch (error) {
+    console.error('Error getting random stratagems:', error);
+    res.status(500).json({ error: 'Failed to get random stratagems' });
+  }
+});
+
+app.get('/api/random/armor', (req, res) => {
+  try {
+    // Use getRandomItemWithData to get armor with potential icons
+    const randomArmor = getRandomItemWithData(items.armor, items.itemsData, 'ARMOR');
+    res.json({ armor: randomArmor });
+  } catch (error) {
+    console.error('Error getting random armor:', error);
+    res.status(500).json({ error: 'Failed to get random armor' });
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 }); 

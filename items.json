@@ -1,0 +1,488 @@
+{
+  "PRIMARY": [
+    {
+      "name": "AR-23 Liberator",
+      "icon": "/images/primary/AR-23_Liberator_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR-23P Liberator Penetrator",
+      "icon": "/images/primary/AR-23P_Liberator_Penetrator_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR-23C Liberator Concussive",
+      "icon": "/images/primary/AR-23C_Liberator_Concussive_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR-23A Liberator Carbine",
+      "icon": "/images/primary/AR-23A_Liberator_Carbine_Primary_Weaponry.png"
+    },
+    {
+      "name": "BR-14 Adjudicator",
+      "icon": "/images/primary/BR-14_Adjudicator_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR-61 Tenderizer",
+      "icon": "/images/primary/AR-61_Tenderizer_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-2124 Constitution",
+      "icon": "/images/primary/R-2124_Constitution_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-63 Diligence",
+      "icon": "/images/primary/R-63_Diligence_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-63CS Diligence Counter-Sniper",
+      "icon": "/images/primary/R-63CS_Diligence_Counter_Sniper_Primary_Weaponry.png"
+    },
+    {
+      "name": "StA-52 Assault Rifle",
+      "icon": "/images/primary/StA-52_Assault_Rifle_Primary_Weaponry.png"
+    },
+    {
+      "name": "StA-11 SMG",
+      "icon": "/images/primary/StA-11_SMG_Primary_Weaponry.png"
+    },
+    {
+      "name": "SMG-37 Defender",
+      "icon": "/images/primary/SMG-37_Defender_Primary_Weaponry.png"
+    },
+    {
+      "name": "SMG-72 Pummeler",
+      "icon": "/images/primary/SMG-72_Pummeler_Primary_Weaponry.png"
+    },
+    {
+      "name": "SMG-32 Reprimand",
+      "icon": "/images/primary/SMG-32_Reprimand_Primary_Weaponry.png"
+    },
+    {
+      "name": "MP-98 Knight",
+      "icon": "/images/primary/MP-98_Knight_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-8 Punisher",
+      "icon": "/images/primary/SG-8_Punisher_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-8S Slugger",
+      "icon": "/images/primary/SG-8S_Slugger_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-8P Punisher Plasma",
+      "icon": "/images/primary/SG-8P_Punisher_Plasma_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-225 Breaker",
+      "icon": "/images/primary/SG-225_Breaker_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-225SP Breaker Spray-n-Pray",
+      "icon": "/images/primary/SG-225SP_Breaker_Spray&Pray_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-225IE Breaker Incendiary",
+      "icon": "/images/primary/SG-225IE_Breaker_Incendiary_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-451 Cookout",
+      "icon": "/images/primary/SG-451_Cookout_Primary_Weaponry.png"
+    },
+    {
+      "name": "SG-20 Halt",
+      "icon": "/images/primary/SG-20_Halt_Primary_Weaponry.png"
+    },
+    {
+      "name": "CB-9 Explosive Crossbow",
+      "icon": "/images/primary/CB-9_Exploding_Crossbow_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-36 Eruptor",
+      "icon": "/images/primary/R-36_Eruptor_Primary_Weaponry.png"
+    },
+    {
+      "name": "PLAS-39 Accelerator Rifle",
+      "icon": "/images/primary/PLAS-39_Accelerator_Rifle_Primary_Weaponry.png"
+    },
+    {
+      "name": "ARC-12 Blitzer",
+      "icon": "/images/primary/ARC-12_Blitzer_Primary_Weaponry.png"
+    },
+    {
+      "name": "LAS-5 Scythe",
+      "icon": "/images/primary/LAS-5_Scythe_Primary_Weaponry.png"
+    },
+    {
+      "name": "LAS-16 Sickle",
+      "icon": "/images/primary/LAS-16_Sickle_Primary_Weaponry.png"
+    },
+    {
+      "name": "LAS-17 Double-Edge Sickle",
+      "icon": "/images/primary/LAS-17_Double-Edge_Sickle_Primary_Weaponry.png"
+    },
+    {
+      "name": "PLAS-1 Scorcher",
+      "icon": "/images/primary/PLAS-1_Scorcher_Primary_Weaponry.png"
+    },
+    {
+      "name": "PLAS-101 Purifier",
+      "icon": "/images/primary/PLAS-101_Purifier_Primary_Weaponry.png"
+    },
+    {
+      "name": "JAR-5 Dominator",
+      "icon": "/images/primary/JAR-5_Dominator_Primary_Weaponry.png"
+    },
+    {
+      "name": "FLAM-66 Torcher",
+      "icon": "/images/primary/FLAM-66_Torcher_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-6 Deadeye",
+      "icon": "/images/primary/R-6_Deadeye_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-2 Amendment",
+      "icon": "/images/primary/R-2_Amendment_Primary_Weaponry.png"
+    }
+  ],
+  "SECONDARY": [
+    {
+      "name": "P-2 Peacemaker",
+      "icon": "/images/secondary/P-2_Peacemaker_Secondary_Weaponry.png"
+    },
+    {
+      "name": "P-113 Verdict",
+      "icon": "/images/secondary/P-113_Verdict_Secondary_Weaponry.png"
+    },
+    {
+      "name": "P-4 Senator",
+      "icon": "/images/secondary/P-4_Senator_Secondary_Weaponry.png"
+    },
+    {
+      "name": "P-19 Redeemer",
+      "icon": "/images/secondary/P-19_Redeemer_Secondary_Weaponry.png"
+    },
+    {
+      "name": "GP-31 Grenade Pistol",
+      "icon": "/images/secondary/GP-31_Grenade_Pistol_Secondary_Weaponry.png"
+    },
+    {
+      "name": "GP-31 Ultimatum",
+      "icon": "/images/secondary/GP-31_Ultimatum_Secondary_Weaponry.png"
+    },
+    {
+      "name": "LAS-7 Dagger",
+      "icon": "/images/secondary/LAS-7_Dagger_Secondary_Weaponry.png"
+    },
+    {
+      "name": "LAS-58 Talon",
+      "icon": "/images/secondary/LAS-58_Talon_Secondary_Weaponry.png"
+    },
+    {
+      "name": "SG-22 Bushwhacker",
+      "icon": "/images/secondary/SG-22_Bushwhacker_Secondary_Weaponry.png"
+    },
+    {
+      "name": "P-72 Crisper",
+      "icon": "/images/secondary/P-72_Crisper_Secondary_Weaponry.png"
+    },
+    {
+      "name": "P-11 Stim Pistol",
+      "icon": "/images/secondary/P-11_Stim_Pistol_Secondary_Weaponry.png"
+    },
+    {
+      "name": "PLAS-15 Loyalist",
+      "icon": "/images/secondary/PLAS-15_Loyalist_Secondary_Weaponry.png"
+    },
+    {
+      "name": "CQC-2 Saber",
+      "icon": "/images/secondary/CQC-2_Saber_Secondary_Weaponry.png"
+    },
+    {
+      "name": "CQC-5 Combat Hatchet",
+      "icon": "/images/secondary/CQC-5_Combat_Hatchet_Secondary_Weaponry.png"
+    },
+    {
+      "name": "CQC-19 Stun Lance",
+      "icon": "/images/secondary/CQC-19_Stun_Lance_Secondary_Weaponry.png"
+    },
+    {
+      "name": "CQC-30 Stun Baton",
+      "icon": "/images/secondary/CQC-30_Stun_Baton_Secondary_Weaponry.png"
+    }
+  ],
+  "GRENADES": [
+    {
+      "name": "G-4 Gas",
+      "icon": "/images/grenade/G-4_Gas_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-6 Frag",
+      "icon": "/images/grenade/G-6_Frag_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-12 High-Explosive",
+      "icon": "/images/grenade/G-12_High_Explosive_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-10 Incendiary",
+      "icon": "/images/grenade/G-10_Incendiary_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-13 Incendiary Impact",
+      "icon": "/images/grenade/G-13_Incendiary_Impact_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-16 Impact",
+      "icon": "/images/grenade/G-16_Impact_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-23 Stun",
+      "icon": "/images/grenade/G-23_Stun_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-3 Smoke",
+      "icon": "/images/grenade/G-3_Smoke_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-50 Seeker",
+      "icon": "/images/grenade/G-50_Seeker_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-123 Thermite",
+      "icon": "/images/grenade/G-123_Thermite_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-142 PyroTech",
+      "icon": "/images/grenade/G-142_Pyrotech_Throwable_Weaponry.png"
+    },
+    {
+      "name": "K-2 Throwing Knife",
+      "icon": "/images/grenade/K-2_Throwing_Knife_Throwable_Weaponry.png"
+    },
+    {
+      "name": "TED-63 Dynamite",
+      "icon": "/images/grenade/TED-63_Dynamite_Throwable_Weaponry.png"
+    }
+  ],
+  "ARMOR": [
+    {
+      "name": "CW-4 Artic Ranger",
+      "icon": null
+    },
+    {
+      "name": "CE-07 Demolition Specialist",
+      "icon": null
+    },
+    {
+      "name": "SC-37 Legionaire",
+      "icon": null
+    },
+    {
+      "name": "SC-30 Trailblazer Scout",
+      "icon": null
+    },
+    {
+      "name": "SC-34 Infiltrator",
+      "icon": null
+    },
+    {
+      "name": "SR-24 Street Scout",
+      "icon": null
+    },
+    {
+      "name": "AC-2 Obedient",
+      "icon": null
+    },
+    {
+      "name": "DP-00 Tactical",
+      "icon": null
+    },
+    {
+      "name": "SE-35 Trench Engineer",
+      "icon": null
+    },
+    {
+      "name": "CE-27 Ground Breaker",
+      "icon": null
+    },
+    {
+      "name": "CM-09 Bonesnapper",
+      "icon": null
+    },
+    {
+      "name": "B-22 Model Citizen",
+      "icon": null
+    },
+    {
+      "name": "EX-03 Prototype 3",
+      "icon": null
+    },
+    {
+      "name": "DP-40 Hero of the Federation",
+      "icon": null
+    },
+    {
+      "name": "DP-11 Champion of the People",
+      "icon": null
+    },
+    {
+      "name": "CM-14 Physician",
+      "icon": null
+    },
+    {
+      "name": "TR-117 Alpha Commander",
+      "icon": null
+    },
+    {
+      "name": "B-01 Tactical",
+      "icon": null
+    },
+    {
+      "name": "I-92 Fire Fighter",
+      "icon": null
+    },
+    {
+      "name": "SA-04 Combat Technician",
+      "icon": null
+    },
+    {
+      "name": "IE-3 Martyr",
+      "icon": null
+    },
+    {
+      "name": "IE-12 Ritcious",
+      "icon": null
+    },
+    {
+      "name": "FS-55 Devastator",
+      "icon": null
+    },
+    {
+      "name": "CW-22 Kodiak",
+      "icon": null
+    },
+    {
+      "name": "FS-05 Marksman",
+      "icon": null
+    },
+    {
+      "name": "SR-18 Roadblock",
+      "icon": null
+    },
+    {
+      "name": "FS-23 Battle Master",
+      "icon": null
+    },
+    {
+      "name": "CW-36 Winter Warrier",
+      "icon": null
+    },
+    {
+      "name": "SA-25 Steel Trooper",
+      "icon": null
+    },
+    {
+      "name": "SA-12 Servo Assisted",
+      "icon": null
+    },
+    {
+      "name": "SA-32 Dynamo",
+      "icon": null
+    },
+    {
+      "name": "PH-9 Predator",
+      "icon": null
+    },
+    {
+      "name": "PH-202 Twigsnapper",
+      "icon": null
+    },
+    {
+      "name": "I-09 Heat Seeker",
+      "icon": null
+    },
+    {
+      "name": "AF-50 Noxious Ranger",
+      "icon": null
+    },
+    {
+      "name": "AF-02 Haz-Master",
+      "icon": null
+    },
+    {
+      "name": "UF-16 Inspector",
+      "icon": null
+    },
+    {
+      "name": "RE-2310 Honorary Guard",
+      "icon": null
+    }
+  ],
+  "BOOSTERS": [
+    {
+      "name": "Vitality Enhancement",
+      "icon": "/images/boosters/Vitality_Enhancement_Booster.JPG"
+    },
+    {
+      "name": "Stamina Enhancement",
+      "icon": "/images/boosters/Stamina_Enhancement_Booster.JPG"
+    },
+    {
+      "name": "Muscle Enhancement",
+      "icon": "/images/boosters/Muscle_Enhancement_Booster.JPG"
+    },
+    {
+      "name": "UAV Recon",
+      "icon": "/images/boosters/UAV_Recon_Booster.JPG"
+    },
+    {
+      "name": "Increased Reinforcement Budget",
+      "icon": "/images/boosters/Increased_Reinforcement_Budget_Booster.JPG"
+    },
+    {
+      "name": "Hellpod Space Optimization",
+      "icon": "/images/boosters/Hellpod_Space_Optimization_Booster.JPG"
+    },
+    {
+      "name": "Localization Confusion",
+      "icon": "/images/boosters/Localization_Confusion_Booster.JPG"
+    },
+    {
+      "name": "Expert Extraction Pilot",
+      "icon": "/images/boosters/Expert_Extraction_Pilot_Booster.JPG"
+    },
+    {
+      "name": "Motivational Shocks",
+      "icon": "/images/boosters/Motivational_Shocks_Booster.JPG"
+    },
+    {
+      "name": "Armed Resupply Pods",
+      "icon": "/images/boosters/Armed_Resupply_Pods_Booster.JPG"
+    },
+    {
+      "name": "Flexible Reinforcement Budget",
+      "icon": "/images/boosters/Flexible_Reinforcement_Budget.JPG"
+    },
+    {
+      "name": "Experimental Infusion",
+      "icon": "/images/boosters/Experimental_Infusion_Booster.JPG"
+    },
+    {
+      "name": "Sample Extricator",
+      "icon": "/images/boosters/Sample_Extricator_Booster.JPG"
+    },
+    {
+      "name": "Sample Scanner",
+      "icon": "/images/boosters/Sample_Scanner_Booster.JPG"
+    },
+    {
+      "name": "Dead Sprint",
+      "icon": "/images/boosters/Dead_Sprint_Booster.JPG"
+    },
+    {
+      "name": "Firebomb Hellpods",
+      "icon": "/images/boosters/Firebomb_Hellpods_Booster.JPG"
+    }
+  ]
+} 

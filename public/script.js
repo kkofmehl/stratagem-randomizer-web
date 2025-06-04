@@ -224,27 +224,137 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateUI = (data) => {
         // Update primary weapon if present in data
         if (data.primary) {
-            primaryElement.textContent = data.primary;
+            primaryElement.innerHTML = '';
+            const primaryItem = document.createElement('div');
+            primaryItem.className = 'loadout-item-with-icon';
+            
+            // Add icon if available
+            if (typeof data.primary === 'object' && data.primary.icon) {
+                const iconElement = document.createElement('img');
+                iconElement.src = data.primary.icon;
+                iconElement.alt = data.primary.name;
+                iconElement.className = 'item-icon';
+                primaryItem.appendChild(iconElement);
+                
+                // Add name
+                const nameElement = document.createElement('span');
+                nameElement.className = 'item-name';
+                nameElement.textContent = data.primary.name;
+                primaryItem.appendChild(nameElement);
+            } else {
+                // Fallback for string data
+                primaryItem.textContent = typeof data.primary === 'object' ? data.primary.name : data.primary;
+            }
+            
+            primaryElement.appendChild(primaryItem);
         }
         
         // Update secondary weapon if present in data
         if (data.secondary) {
-            secondaryElement.textContent = data.secondary;
+            secondaryElement.innerHTML = '';
+            const secondaryItem = document.createElement('div');
+            secondaryItem.className = 'loadout-item-with-icon';
+            
+            // Add icon if available
+            if (typeof data.secondary === 'object' && data.secondary.icon) {
+                const iconElement = document.createElement('img');
+                iconElement.src = data.secondary.icon;
+                iconElement.alt = data.secondary.name;
+                iconElement.className = 'item-icon';
+                secondaryItem.appendChild(iconElement);
+                
+                // Add name
+                const nameElement = document.createElement('span');
+                nameElement.className = 'item-name';
+                nameElement.textContent = data.secondary.name;
+                secondaryItem.appendChild(nameElement);
+            } else {
+                // Fallback for string data
+                secondaryItem.textContent = typeof data.secondary === 'object' ? data.secondary.name : data.secondary;
+            }
+            
+            secondaryElement.appendChild(secondaryItem);
         }
         
         // Update grenade if present in data
         if (data.grenade) {
-            grenadeElement.textContent = data.grenade;
+            grenadeElement.innerHTML = '';
+            const grenadeItem = document.createElement('div');
+            grenadeItem.className = 'loadout-item-with-icon';
+            
+            // Add icon if available
+            if (typeof data.grenade === 'object' && data.grenade.icon) {
+                const iconElement = document.createElement('img');
+                iconElement.src = data.grenade.icon;
+                iconElement.alt = data.grenade.name;
+                iconElement.className = 'item-icon';
+                grenadeItem.appendChild(iconElement);
+                
+                // Add name
+                const nameElement = document.createElement('span');
+                nameElement.className = 'item-name';
+                nameElement.textContent = data.grenade.name;
+                grenadeItem.appendChild(nameElement);
+            } else {
+                // Fallback for string data
+                grenadeItem.textContent = typeof data.grenade === 'object' ? data.grenade.name : data.grenade;
+            }
+            
+            grenadeElement.appendChild(grenadeItem);
         }
         
         // Update armor if present in data
         if (data.armor) {
-            armorElement.textContent = data.armor;
+            armorElement.innerHTML = '';
+            const armorItem = document.createElement('div');
+            armorItem.className = 'loadout-item-with-icon';
+            
+            // Add icon if available
+            if (typeof data.armor === 'object' && data.armor.icon) {
+                const iconElement = document.createElement('img');
+                iconElement.src = data.armor.icon;
+                iconElement.alt = data.armor.name;
+                iconElement.className = 'item-icon';
+                armorItem.appendChild(iconElement);
+                
+                // Add name
+                const nameElement = document.createElement('span');
+                nameElement.className = 'item-name';
+                nameElement.textContent = data.armor.name;
+                armorItem.appendChild(nameElement);
+            } else {
+                // Fallback for string data or null icon
+                armorItem.textContent = typeof data.armor === 'object' ? data.armor.name : data.armor;
+            }
+            
+            armorElement.appendChild(armorItem);
         }
         
         // Update booster if present in data
         if (data.booster) {
-            boosterElement.textContent = data.booster;
+            boosterElement.innerHTML = '';
+            const boosterItem = document.createElement('div');
+            boosterItem.className = 'loadout-item-with-icon';
+            
+            // Add icon if available
+            if (typeof data.booster === 'object' && data.booster.icon) {
+                const iconElement = document.createElement('img');
+                iconElement.src = data.booster.icon;
+                iconElement.alt = data.booster.name;
+                iconElement.className = 'item-icon';
+                boosterItem.appendChild(iconElement);
+                
+                // Add name
+                const nameElement = document.createElement('span');
+                nameElement.className = 'item-name';
+                nameElement.textContent = data.booster.name;
+                boosterItem.appendChild(nameElement);
+            } else {
+                // Fallback for string data
+                boosterItem.textContent = typeof data.booster === 'object' ? data.booster.name : data.booster;
+            }
+            
+            boosterElement.appendChild(boosterItem);
         }
         
         // Update stratagems if present in data

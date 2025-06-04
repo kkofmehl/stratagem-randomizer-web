@@ -256,8 +256,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.stratagems.length > 0) {
                 data.stratagems.forEach(stratagem => {
                     const stratagemElement = document.createElement('div');
-                    stratagemElement.className = 'loadout-item';
-                    stratagemElement.textContent = stratagem;
+                    stratagemElement.className = 'loadout-item stratagem-item';
+                    
+                    // Create and add the icon if available
+                    if (stratagem.icon) {
+                        const iconElement = document.createElement('img');
+                        iconElement.src = stratagem.icon;
+                        iconElement.alt = stratagem.name;
+                        iconElement.className = 'stratagem-icon';
+                        stratagemElement.appendChild(iconElement);
+                    }
+                    
+                    // Create and add the name
+                    const nameElement = document.createElement('span');
+                    nameElement.className = 'stratagem-name';
+                    nameElement.textContent = stratagem.name;
+                    stratagemElement.appendChild(nameElement);
+                    
                     stratagemsElement.appendChild(stratagemElement);
                 });
             } else {

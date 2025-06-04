@@ -1,0 +1,278 @@
+{
+  "DEFENSE": [
+    {
+      "name": "HMG Placement",
+      "icon": "/images/icons/hmg-placement.png"
+    },
+    {
+      "name": "Shield Generator Relay",
+      "icon": "/images/icons/shield-generator-relay.png"
+    },
+    {
+      "name": "Tesla Tower",
+      "icon": "/images/icons/tesla-tower.png"
+    },
+    {
+      "name": "Grenadire Battlement",
+      "icon": "/images/icons/grenadire-battlement.png"
+    },
+    {
+      "name": "Anti-Personnel Minefield",
+      "icon": "/images/icons/anti-personnel-minefield.png"
+    },
+    {
+      "name": "Incendiary Minefield",
+      "icon": "/images/icons/incendiary-minefield.png"
+    },
+    {
+      "name": "Anti-Tank Mines",
+      "icon": "/images/icons/anti-tank-mines.png"
+    },
+    {
+      "name": "Gas Mines",
+      "icon": "/images/icons/gas-mines.png"
+    },
+    {
+      "name": "Gatling Sentry",
+      "icon": "/images/icons/gatling-sentry.png"
+    },
+    {
+      "name": "Machine-Gun Sentry",
+      "icon": "/images/icons/machine-gun-sentry.png"
+    },
+    {
+      "name": "Auto-Cannon Sentry",
+      "icon": "/images/icons/auto-cannon-sentry.png"
+    },
+    {
+      "name": "Mortar Sentry",
+      "icon": "/images/icons/mortar-sentry.png"
+    },
+    {
+      "name": "Rocket Sentry",
+      "icon": "/images/icons/rocket-sentry.png"
+    },
+    {
+      "name": "EMS (Stun) Mortar Sentry",
+      "icon": "/images/icons/ems-mortar-sentry.png"
+    },
+    {
+      "name": "Flamethrower Sentry",
+      "icon": "/images/icons/flamethrower-sentry.png"
+    },
+    {
+      "name": "E/AT-12 Anti-Tank Placement",
+      "icon": "/images/icons/eat-12-anti-tank-placement.png"
+    }
+  ],
+  "EAGLES": [
+    {
+      "name": "Eagle Airstrike (strafe)",
+      "icon": "/images/icons/eagle-airstrike-strafe.png"
+    },
+    {
+      "name": "Eagle Airstrike (Bombs)",
+      "icon": "/images/icons/eagle-airstrike-bombs.png"
+    },
+    {
+      "name": "Eagle Cluster Bomb",
+      "icon": "/images/icons/eagle-cluster-bomb.png"
+    },
+    {
+      "name": "Eagle Napalm Airstrike",
+      "icon": "/images/icons/eagle-napalm-airstrike.png"
+    },
+    {
+      "name": "Eagle 500 kg Bomb",
+      "icon": "/images/icons/eagle-500kg-bomb.png"
+    },
+    {
+      "name": "Eagle Smoke Strike",
+      "icon": "/images/icons/eagle-smoke-strike.png"
+    },
+    {
+      "name": "Eagle 110mm Rocket Pods",
+      "icon": "/images/icons/eagle-110mm-rocket-pods.png"
+    }
+  ],
+  "ORBITALS": [
+    {
+      "name": "Orbital Gatling Barrage",
+      "icon": "/images/icons/orbital-gatling-barrage.png"
+    },
+    {
+      "name": "Orbital Airburst Strike",
+      "icon": "/images/icons/orbital-airburst-strike.png"
+    },
+    {
+      "name": "Orbital Walking Barrage",
+      "icon": "/images/icons/orbital-walking-barrage.png"
+    },
+    {
+      "name": "Orbital Laser Strike",
+      "icon": "/images/icons/orbital-laser-strike.png"
+    },
+    {
+      "name": "Orbital 120 mm HE Barrage",
+      "icon": "/images/icons/orbital-120mm-he-barrage.png"
+    },
+    {
+      "name": "Orbital 380 mm HE Barrage",
+      "icon": "/images/icons/orbital-380mm-he-barrage.png"
+    },
+    {
+      "name": "Orbital Railcannon Strike",
+      "icon": "/images/icons/orbital-railcannon-strike.png"
+    },
+    {
+      "name": "Orbital Napalm Barrage",
+      "icon": "/images/icons/orbital-napalm-barrage.png"
+    },
+    {
+      "name": "Orbital EMS Strike",
+      "icon": "/images/icons/orbital-ems-strike.png"
+    },
+    {
+      "name": "Orbital Gas Strike",
+      "icon": "/images/icons/orbital-gas-strike.png"
+    },
+    {
+      "name": "Orbital Precision Strike",
+      "icon": "/images/icons/orbital-precision-strike.png"
+    },
+    {
+      "name": "Orbital Smoke Strike",
+      "icon": "/images/icons/orbital-smoke-strike.png"
+    }
+  ],
+  "SUPPORT": [
+    {
+      "name": "MG-43 Machine-Gun",
+      "icon": "/images/icons/mg-43-machine-gun.png"
+    },
+    {
+      "name": "MG-206 Heavy Machine-Gun",
+      "icon": "/images/icons/mg-206-heavy-machine-gun.png"
+    },
+    {
+      "name": "M-105 Stalwart (LMG)",
+      "icon": "/images/icons/m-105-stalwart.png"
+    },
+    {
+      "name": "APW-1 Anti-Materiel Rifle",
+      "icon": "/images/icons/apw-1-anti-materiel-rifle.png"
+    },
+    {
+      "name": "Flam-40 Flamethrower",
+      "icon": "/images/icons/flam-40-flamethrower.png"
+    },
+    {
+      "name": "GR-8 Recoilless Rifle",
+      "icon": "/images/icons/gr-8-recoilless-rifle.png"
+    },
+    {
+      "name": "RL-77 Airburst Rocket Launcher",
+      "icon": "/images/icons/rl-77-airburst-rocket-launcher.png"
+    },
+    {
+      "name": "AC-8 Autocannon",
+      "icon": "/images/icons/ac-8-autocannon.png"
+    },
+    {
+      "name": "RS-422 Railgun",
+      "icon": "/images/icons/rs-422-railgun.png"
+    },
+    {
+      "name": "MLS-X4 Commando Rocket Launcher",
+      "icon": "/images/icons/mls-x4-commando-rocket-launcher.png"
+    },
+    {
+      "name": "FAF-14 Spear",
+      "icon": "/images/icons/faf-14-spear.png"
+    },
+    {
+      "name": "EAT-17 Disposable Rocket Launcher",
+      "icon": "/images/icons/eat-17-disposable-rocket-launcher.png"
+    },
+    {
+      "name": "Sta-X3 W.A.S.P Launcher",
+      "icon": "/images/icons/sta-x3-wasp-launcher.png"
+    },
+    {
+      "name": "LAS-98 Laser Cannon",
+      "icon": "/images/icons/las-98-laser-cannon.png"
+    },
+    {
+      "name": "M-29 Quasar Cannon",
+      "icon": "/images/icons/m-29-quasar-cannon.png"
+    },
+    {
+      "name": "GL-21 Gernade Launcher",
+      "icon": "/images/icons/gl-21-gernade-launcher.png"
+    },
+    {
+      "name": "Jump Pack",
+      "icon": "/images/icons/jump-pack.png"
+    },
+    {
+      "name": "M-102 Fast Recon Vehicle",
+      "icon": "/images/icons/m-102-fast-recon-vehicle.png"
+    },
+    {
+      "name": "ARC-3 Arc-Thrower",
+      "icon": "/images/icons/arc-3-arc-thrower.png"
+    },
+    {
+      "name": "Supply Pack (ammo/med)",
+      "icon": "/images/icons/supply-pack.png"
+    },
+    {
+      "name": "Shield Generator Pack",
+      "icon": "/images/icons/shield-generator-pack.png"
+    },
+    {
+      "name": "Ballistic Shield Backpack",
+      "icon": "/images/icons/ballistic-shield-backpack.png"
+    },
+    {
+      "name": "Guard Dog II Rover (Laser)",
+      "icon": "/images/icons/guard-dog-ii-rover-laser.png"
+    },
+    {
+      "name": "Guard Dog Rover (MG)",
+      "icon": "/images/icons/guard-dog-rover-mg.png"
+    },
+    {
+      "name": "EXO-45 Patriot Exosuit",
+      "icon": "/images/icons/exo-45-patriot-exosuit.png"
+    },
+    {
+      "name": "EXO-49 \"Emancipator\" Exosuit (rail-gun)",
+      "icon": "/images/icons/exo-49-emancipator-exosuit.png"
+    },
+    {
+      "name": "TX-41 Sterilizer",
+      "icon": "/images/icons/tx-41-sterilizer.png"
+    },
+    {
+      "name": "Guard Dog III Rover (Gas)",
+      "icon": "/images/icons/guard-dog-iii-rover-gas.png"
+    },
+    {
+      "name": "SH-51 Directional Shield",
+      "icon": "/images/icons/sh-51-directional-shield.png"
+    },
+    {
+      "name": "Hover Pack",
+      "icon": "/images/icons/hover-pack.png"
+    },
+    {
+      "name": "One True Flag",
+      "icon": "/images/icons/one-true-flag.png"
+    },
+    {
+      "name": "Portable Hellbomb",
+      "icon": "/images/icons/portable-hellbomb.png"
+    }
+  ]
+} 

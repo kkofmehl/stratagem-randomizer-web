@@ -23,10 +23,6 @@ const parseItemsFile = () => {
       start: '──────────────────────── HAND GRENADES ────────────────────────',
       end: '──────────────────────── STRATAGEMS ────────────────────────'
     },
-    stratagems: {
-      start: '──────────────────────── STRATAGEMS ────────────────────────',
-      end: '──────────────────────── ARMOR SETS ────────────────────────'
-    },
     armor: {
       start: '──────────────────────── ARMOR SETS ────────────────────────',
       end: '──────────────────────── BOOSTERS ────────────────────────'
@@ -54,44 +50,34 @@ const parseItemsFile = () => {
     // Extract items from the section
     const lines = sectionText.split('\n').filter(line => line.trim() !== '');
     
-    if (category === 'stratagems') {
-      // Parse stratagem subcategories
-      const stratagemCategories = {
-        DEFENSE: [],
-        EAGLES: [],
-        ORBITALS: [],
-        SUPPORT: []
-      };
-      
-      let currentCategory = null;
-      
-      for (const line of lines) {
-        if (line.includes('________________________ DEFENSE ___________________________')) {
-          currentCategory = 'DEFENSE';
-        } else if (line.includes('________________________ EAGLES ____________________________')) {
-          currentCategory = 'EAGLES';
-        } else if (line.includes('________________________ ORBITALS __________________________')) {
-          currentCategory = 'ORBITALS';
-        } else if (line.includes('________________________SUPPORT ____________________________')) {
-          currentCategory = 'SUPPORT';
-        } else if (line.includes('•') && currentCategory) {
-          stratagemCategories[currentCategory].push(line.split('•')[1].trim());
-        }
-      }
-      
-      // Store both the flat list and categorized stratagems
-      items[category] = Object.values(stratagemCategories).flat();
-      items.stratagemCategories = stratagemCategories;
-      
-      console.log(`Category ${category}: found ${items[category].length} items (${stratagemCategories.DEFENSE.length} defense, ${stratagemCategories.EAGLES.length} eagles, ${stratagemCategories.ORBITALS.length} orbitals, ${stratagemCategories.SUPPORT.length} support)`);
-    } else {
-      // All other categories use bullet points
-      items[category] = lines
-        .filter(line => line.includes('•'))
-        .map(line => line.split('•')[1].trim());
-      
-      console.log(`Category ${category}: found ${items[category].length} items`);
+    // All categories use bullet points
+    items[category] = lines
+      .filter(line => line.includes('•'))
+      .map(line => line.split('•')[1].trim());
+    
+    console.log(`Category ${category}: found ${items[category].length} items`);
+  }
+
+  // Load stratagems from JSON file
+  try {
+    const stratagemsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'stratagems.json'), 'utf8'));
+    
+    // Create a flat list of all stratagems
+    const allStratagems = [];
+    const stratagemCategories = {};
+    
+    for (const [category, stratagems] of Object.entries(stratagemsData)) {
+      stratagemCategories[category] = stratagems.map(stratagem => stratagem.name);
+      allStratagems.push(...stratagems.map(stratagem => stratagem.name));
     }
+    
+    items.stratagems = allStratagems;
+    items.stratagemCategories = stratagemCategories;
+    items.stratagemsData = stratagemsData; // Store the full data with icons
+    
+    console.log(`Loaded stratagems from JSON: ${allStratagems.length} stratagems (${Object.keys(stratagemCategories).join(', ')})`);
+  } catch (error) {
+    console.error('Error loading stratagems.json:', error);
   }
 
   console.log('Parsed items summary:', {
@@ -113,7 +99,8 @@ const getRandomItem = (array) => {
 };
 
 // Function to get 4 random stratagems without duplicates
-const getRandomStratagems = (stratagems, stratagemCategories, options = {}, count = 4) => {
+// Modified to return full stratagem objects with icons
+const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, options = {}, count = 4) => {
   if (!stratagems || stratagems.length === 0) return [];
   
   // Default options for all categories
@@ -135,13 +122,17 @@ const getRandomStratagems = (stratagems, stratagemCategories, options = {}, coun
   if (onlyCategory) {
     console.log(`Only using stratagems from category: ${onlyCategory}`);
     // Use only stratagems from the selected category
-    const availableStratagems = [...stratagemCategories[onlyCategory]];
+    const availableStratagemNames = [...stratagemCategories[onlyCategory]];
     const selectedStratagems = [];
     
-    for (let i = 0; i < count && availableStratagems.length > 0; i++) {
-      const index = Math.floor(Math.random() * availableStratagems.length);
-      selectedStratagems.push(availableStratagems[index]);
-      availableStratagems.splice(index, 1);
+    for (let i = 0; i < count && availableStratagemNames.length > 0; i++) {
+      const index = Math.floor(Math.random() * availableStratagemNames.length);
+      const selectedName = availableStratagemNames[index];
+      
+      // Find the full stratagem object with icon
+      const selectedStratagem = stratagemsData[onlyCategory].find(s => s.name === selectedName);
+      selectedStratagems.push(selectedStratagem);
+      availableStratagemNames.splice(index, 1);
     }
     
     console.log(`Selected ${selectedStratagems.length} stratagems from ${onlyCategory}`);
@@ -167,6 +158,14 @@ const getRandomStratagems = (stratagems, stratagemCategories, options = {}, coun
   console.log(`Light categories: ${lightCategories.join(', ') || 'none'}`);
   console.log(`Excluded categories: ${excludedCategories.join(', ') || 'none'}`);
   
+  // Create a map to look up full stratagem objects
+  const stratagemMap = {};
+  for (const [category, stratagems] of Object.entries(stratagemsData)) {
+    for (const stratagem of stratagems) {
+      stratagemMap[stratagem.name] = { ...stratagem, category };
+    }
+  }
+  
   // Create pools of stratagems from each active category
   let availableStratagems = [];
   
@@ -185,20 +184,21 @@ const getRandomStratagems = (stratagems, stratagemCategories, options = {}, coun
   
   // First, ensure we get at least 2 stratagems from each heavy category
   for (const category of heavyCategories) {
-    const categoryStratagems = [...stratagemCategories[category]];
+    const categoryStratagemNames = [...stratagemCategories[category]];
     console.log(`Adding at least 2 stratagems from heavy category ${category}`);
     
     // Get at least 2 stratagems from this category if possible
     let heavyStratagemCount = 0;
-    while (heavyStratagemCount < 2 && categoryStratagems.length > 0 && selectedStratagems.length < count) {
-      const index = Math.floor(Math.random() * categoryStratagems.length);
-      const selectedStratagem = categoryStratagems[index];
+    while (heavyStratagemCount < 2 && categoryStratagemNames.length > 0 && selectedStratagems.length < count) {
+      const index = Math.floor(Math.random() * categoryStratagemNames.length);
+      const selectedName = categoryStratagemNames[index];
+      const selectedStratagem = stratagemMap[selectedName];
       selectedStratagems.push(selectedStratagem);
       heavyStratagemCount++;
       
       // Remove the selected stratagem from the category and available pools
-      categoryStratagems.splice(index, 1);
-      const availableIndex = availableStratagems.findIndex(s => s === selectedStratagem);
+      categoryStratagemNames.splice(index, 1);
+      const availableIndex = availableStratagems.findIndex(s => s === selectedName);
       if (availableIndex !== -1) {
         availableStratagems.splice(availableIndex, 1);
       }
@@ -212,16 +212,17 @@ const getRandomStratagems = (stratagems, stratagemCategories, options = {}, coun
   for (const category of lightCategories) {
     if (selectedStratagems.length >= count) break;
     
-    const categoryStratagems = [...stratagemCategories[category]];
-    if (categoryStratagems.length > 0) {
+    const categoryStratagemNames = [...stratagemCategories[category]];
+    if (categoryStratagemNames.length > 0) {
       console.log(`Adding at most 1 stratagem from light category ${category}`);
-      const index = Math.floor(Math.random() * categoryStratagems.length);
-      const selectedStratagem = categoryStratagems[index];
+      const index = Math.floor(Math.random() * categoryStratagemNames.length);
+      const selectedName = categoryStratagemNames[index];
+      const selectedStratagem = stratagemMap[selectedName];
       selectedStratagems.push(selectedStratagem);
       lightCategoryItems[category] = true;
       
       // Remove from available pool
-      const availableIndex = availableStratagems.findIndex(s => s === selectedStratagem);
+      const availableIndex = availableStratagems.findIndex(s => s === selectedName);
       if (availableIndex !== -1) {
         availableStratagems.splice(availableIndex, 1);
       }
@@ -232,14 +233,15 @@ const getRandomStratagems = (stratagems, stratagemCategories, options = {}, coun
   // But exclude additional stratagems from light categories
   while (selectedStratagems.length < count && availableStratagems.length > 0) {
     const index = Math.floor(Math.random() * availableStratagems.length);
-    const selectedStratagem = availableStratagems[index];
+    const selectedName = availableStratagems[index];
+    const selectedStratagem = stratagemMap[selectedName];
     
     // Check if this stratagem belongs to a light category
     let isFromLightCategory = false;
     let lightCategory = null;
     
     for (const category of lightCategories) {
-      if (stratagemCategories[category].includes(selectedStratagem)) {
+      if (stratagemCategories[category].includes(selectedName)) {
         isFromLightCategory = true;
         lightCategory = category;
         break;
@@ -305,7 +307,18 @@ app.get('/api/random/:type', (req, res) => {
         result = { grenade: getRandomItem(items.grenades) };
         break;
       case 'stratagems':
-        result = { stratagems: getRandomStratagems(items.stratagems, items.stratagemCategories) };
+        // Get the options from the query parameters and map to the correct case
+        const options = {
+          DEFENSE: req.query.defense || 'Normal',
+          EAGLES: req.query.eagles || 'Normal',
+          ORBITALS: req.query.orbitals || 'Normal',
+          SUPPORT: req.query.support || 'Normal'
+        };
+        
+        console.log("Stratagem options received:", options);
+        
+        // Get random stratagems with the specified options and include icons
+        result = { stratagems: getRandomStratagems(items.stratagems, items.stratagemCategories, items.stratagemsData, options) };
         break;
       case 'armor':
         result = { armor: getRandomItem(items.armor) };
@@ -340,7 +353,7 @@ app.get('/api/random/stratagems', (req, res) => {
     console.log("Stratagem options received:", options);
     
     // Get random stratagems with the specified options
-    const stratagems = getRandomStratagems(items.stratagems, items.stratagemCategories, options);
+    const stratagems = getRandomStratagems(items.stratagems, items.stratagemCategories, items.stratagemsData, options);
     
     res.json({ stratagems });
   } catch (error) {
@@ -370,7 +383,7 @@ app.get('/api/random-loadout', (req, res) => {
       grenade: getRandomItem(items.grenades),
       armor: getRandomItem(items.armor),
       booster: getRandomItem(items.boosters),
-      stratagems: getRandomStratagems(items.stratagems, items.stratagemCategories, stratagemOptions)
+      stratagems: getRandomStratagems(items.stratagems, items.stratagemCategories, items.stratagemsData, stratagemOptions)
     };
     
     res.json(loadout);
@@ -397,5 +410,13 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on http://0.0.0.0:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
+  
+  // Parse items on startup to check if everything is working
+  try {
+    const items = parseItemsFile();
+    console.log(`Server initialized with ${items.stratagems?.length || 0} stratagems`);
+  } catch (error) {
+    console.error('Error parsing items on startup:', error);
+  }
 }); 

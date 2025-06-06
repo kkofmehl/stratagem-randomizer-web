@@ -316,17 +316,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 iconElement.alt = data.armor.name;
                 iconElement.className = 'item-icon';
                 armorItem.appendChild(iconElement);
-                
-                // Add name
-                const nameElement = document.createElement('span');
-                nameElement.className = 'item-name';
-                nameElement.textContent = data.armor.name;
-                armorItem.appendChild(nameElement);
-            } else {
-                // Fallback for string data or null icon
-                armorItem.textContent = typeof data.armor === 'object' ? data.armor.name : data.armor;
             }
             
+            // Create content container
+            const contentContainer = document.createElement('div');
+            contentContainer.className = 'item-content';
+            
+            // Add name
+            const nameElement = document.createElement('span');
+            nameElement.className = 'item-name';
+            nameElement.textContent = typeof data.armor === 'object' ? data.armor.name : data.armor;
+            contentContainer.appendChild(nameElement);
+            
+            // Add armor class if available
+            if (typeof data.armor === 'object' && data.armor.class) {
+                const classElement = document.createElement('span');
+                classElement.className = `armor-class armor-class-${data.armor.class.toLowerCase()}`;
+                classElement.textContent = data.armor.class;
+                contentContainer.appendChild(classElement);
+            }
+            
+            armorItem.appendChild(contentContainer);
             armorElement.appendChild(armorItem);
         }
         

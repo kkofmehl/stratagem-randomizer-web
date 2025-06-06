@@ -268,155 +268,193 @@
   "ARMOR": [
     {
       "name": "CW-4 Artic Ranger",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "CE-07 Demolition Specialist",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "SC-37 Legionaire",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "SC-30 Trailblazer Scout",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "SC-34 Infiltrator",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "SR-24 Street Scout",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "AC-2 Obedient",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "DP-00 Tactical",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "SE-35 Trench Engineer",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "CE-27 Ground Breaker",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "CM-09 Bonesnapper",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "B-22 Model Citizen",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "EX-03 Prototype 3",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "DP-40 Hero of the Federation",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "DP-11 Champion of the People",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "CM-14 Physician",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "TR-117 Alpha Commander",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "B-01 Tactical",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "I-92 Fire Fighter",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "SA-04 Combat Technician",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "IE-3 Martyr",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "IE-12 Ritcious",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "FS-55 Devastator",
-      "icon": null
+      "icon": null,
+      "class": "Heavy"
     },
     {
       "name": "CW-22 Kodiak",
-      "icon": null
+      "icon": null,
+      "class": "Heavy"
     },
     {
       "name": "FS-05 Marksman",
-      "icon": null
+      "icon": null,
+      "class": "Heavy"
     },
     {
       "name": "SR-18 Roadblock",
-      "icon": null
+      "icon": null,
+      "class": "Heavy"
     },
     {
       "name": "FS-23 Battle Master",
-      "icon": null
+      "icon": null,
+      "class": "Heavy"
     },
     {
       "name": "CW-36 Winter Warrier",
-      "icon": null
+      "icon": null,
+      "class": "Heavy"
     },
     {
       "name": "SA-25 Steel Trooper",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "SA-12 Servo Assisted",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "SA-32 Dynamo",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "PH-9 Predator",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "PH-202 Twigsnapper",
-      "icon": null
+      "icon": null,
+      "class": "Medium"
     },
     {
       "name": "I-09 Heat Seeker",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "AF-50 Noxious Ranger",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "AF-02 Haz-Master",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "UF-16 Inspector",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     },
     {
       "name": "RE-2310 Honorary Guard",
-      "icon": null
+      "icon": null,
+      "class": "Light"
     }
   ],
   "BOOSTERS": [

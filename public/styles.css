@@ -675,4 +675,36 @@ footer {
 .stratagem-name {
     flex: 1;
     font-weight: 500;
+}
+
+/* Add styles for armor class display */
+.item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.armor-class {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.armor-class-light {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.armor-class-medium {
+    background-color: #ff9800;
+    color: #000;
+}
+
+.armor-class-heavy {
+    background-color: #f44336;
+    color: #fff;
 } 

@@ -358,6 +358,77 @@ app.get('/api/random/armor', (req, res) => {
   }
 });
 
+// New endpoint for getting a single random stratagem without duplicates
+app.get('/api/random/stratagem', (req, res) => {
+  try {
+    const stratagemOptions = {
+      DEFENSE: req.query.defense || 'Normal',
+      EAGLES: req.query.eagles || 'Normal',
+      ORBITALS: req.query.orbitals || 'Normal',
+      SUPPORT: req.query.support || 'Normal'
+    };
+    
+    const excludedStratagems = req.query.exclude ? 
+      Array.isArray(req.query.exclude) ? req.query.exclude : [req.query.exclude] : 
+      [];
+    
+    const index = parseInt(req.query.index) || 0;
+    
+    console.log(`Getting random stratagem with options: ${JSON.stringify(stratagemOptions)}`);
+    console.log(`Excluded stratagems: ${excludedStratagems.join(', ')}`);
+    
+    // Create a map to look up full stratagem objects
+    const stratagemMap = {};
+    for (const [category, stratagems] of Object.entries(items.stratagemsData)) {
+      for (const stratagem of stratagems) {
+        stratagemMap[stratagem.name] = { ...stratagem, category };
+      }
+    }
+    
+    // Create an array of available stratagems based on the options
+    let availableStratagemNames = [];
+    
+    // Check if any category has "Only" selected
+    const onlyCategory = Object.entries(stratagemOptions).find(([_, value]) => value === 'Only')?.[0];
+    
+    if (onlyCategory) {
+      console.log(`Only using stratagems from category: ${onlyCategory}`);
+      availableStratagemNames = [...items.stratagemCategories[onlyCategory]];
+    } else {
+      // Get the categories marked as "No" (excluded)
+      const excludedCategories = Object.entries(stratagemOptions)
+        .filter(([_, value]) => value === 'No')
+        .map(([category]) => category);
+      
+      // Add stratagems from all categories except excluded ones
+      for (const [category, categoryStratagems] of Object.entries(items.stratagemCategories)) {
+        if (!excludedCategories.includes(category)) {
+          availableStratagemNames = [...availableStratagemNames, ...categoryStratagems];
+        }
+      }
+      
+      // Filter out any stratagems that are in the excluded list
+      availableStratagemNames = availableStratagemNames.filter(name => !excludedStratagems.includes(name));
+    }
+    
+    if (availableStratagemNames.length === 0) {
+      console.log("No stratagems available with current options and exclusions");
+      return res.status(404).json({ error: 'No stratagems available with current options' });
+    }
+    
+    // Get a random stratagem from the available ones
+    const randomIndex = Math.floor(Math.random() * availableStratagemNames.length);
+    const selectedName = availableStratagemNames[randomIndex];
+    const selectedStratagem = stratagemMap[selectedName];
+    
+    console.log(`Selected stratagem: ${selectedName}`);
+    res.json({ stratagem: selectedStratagem });
+  } catch (error) {
+    console.error('Error getting random stratagem:', error);
+    res.status(500).json({ error: 'Failed to get random stratagem' });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

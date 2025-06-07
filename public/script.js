@@ -374,9 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Add each stratagem to the list
             if (data.stratagems.length > 0) {
-                data.stratagems.forEach(stratagem => {
+                data.stratagems.forEach((stratagem, index) => {
                     const stratagemElement = document.createElement('div');
                     stratagemElement.className = 'loadout-item stratagem-item';
+                    stratagemElement.dataset.index = index;
                     
                     // Create and add the icon if available
                     if (stratagem.icon) {
@@ -393,6 +394,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     nameElement.textContent = stratagem.name;
                     stratagemElement.appendChild(nameElement);
                     
+                    // Add individual roll button
+                    const rollButton = document.createElement('button');
+                    rollButton.className = 'stratagem-roll-btn';
+                    rollButton.innerHTML = '<i class="fas fa-dice-one"></i> Roll';
+                    rollButton.dataset.index = index;
+                    rollButton.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        rollSingleStratagem(index, rollButton);
+                    });
+                    stratagemElement.appendChild(rollButton);
+                    
                     stratagemsElement.appendChild(stratagemElement);
                 });
             } else {
@@ -401,6 +413,74 @@ document.addEventListener('DOMContentLoaded', () => {
                 noStratagemsElement.textContent = 'No stratagems found';
                 stratagemsElement.appendChild(noStratagemsElement);
             }
+        }
+    };
+    
+    // Function to roll a single stratagem
+    const rollSingleStratagem = async (index, button) => {
+        try {
+            // Add spinning state to button
+            button.classList.add('spinning');
+            button.disabled = true;
+            
+            // Get the current stratagems to avoid duplicates
+            const currentStratagems = Array.from(stratagemsElement.querySelectorAll('.stratagem-item'))
+                .map(item => {
+                    const nameElement = item.querySelector('.stratagem-name');
+                    return nameElement ? nameElement.textContent : '';
+                })
+                .filter(name => name !== '');
+            
+            // Build query string with stratagem options and current stratagems
+            const queryParams = new URLSearchParams();
+            queryParams.append('defense', stratagemOptions.defense);
+            queryParams.append('eagles', stratagemOptions.eagles);
+            queryParams.append('orbitals', stratagemOptions.orbitals);
+            queryParams.append('support', stratagemOptions.support);
+            queryParams.append('index', index);
+            
+            // Add current stratagems as excluded items to avoid duplicates
+            currentStratagems.forEach(name => {
+                queryParams.append('exclude', name);
+            });
+            
+            console.log(`Rolling single stratagem at index ${index}`);
+            console.log(`Excluded stratagems: ${currentStratagems.join(', ')}`);
+            
+            const response = await fetch(`/api/random/stratagem?${queryParams.toString()}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch stratagem');
+            }
+            
+            const data = await response.json();
+            
+            if (data.stratagem) {
+                // Find the stratagem element at the given index
+                const stratagemElement = stratagemsElement.querySelector(`.stratagem-item[data-index="${index}"]`);
+                
+                if (stratagemElement) {
+                    // Update the icon
+                    const iconElement = stratagemElement.querySelector('.stratagem-icon');
+                    if (iconElement && data.stratagem.icon) {
+                        iconElement.src = data.stratagem.icon;
+                        iconElement.alt = data.stratagem.name;
+                    }
+                    
+                    // Update the name
+                    const nameElement = stratagemElement.querySelector('.stratagem-name');
+                    if (nameElement) {
+                        nameElement.textContent = data.stratagem.name;
+                    }
+                }
+            }
+            
+        } catch (error) {
+            console.error('Error fetching single stratagem:', error);
+            alert('Failed to generate stratagem. Please try again.');
+        } finally {
+            // Remove spinning state from button
+            button.classList.remove('spinning');
+            button.disabled = false;
         }
     };
     

@@ -522,5 +522,96 @@
       "name": "Firebomb Hellpods",
       "icon": "/images/boosters/Firebomb_Hellpods_Booster.JPG"
     }
+  ],
+  "SIDE MISSIONS": [
+    {
+      "name": "Wait? Only one?",
+      "description": "You only get to take one stratagem with you into battle. Choose wisely."
+    },
+    {
+      "name": "Only Turrets",
+      "description": "You can only use turrets for this mission."
+    },
+    {
+      "name": "SOS? Who needs it?",
+      "description": "If we get teammates, it's just luck."
+    },
+    {
+      "name": "Private Match",
+      "description": "We are going it alone for this one!"
+    },  
+    {
+      "name": "No Support Weapons",
+      "description": "No support weapons allowed. You'll have to make do with what you have."
+    },
+    {
+      "name": "Bring on the smoke!",
+      "description": "Must bring in smoke gernades and use the Oribital Smoke and Eagle Smoke stratagems."
+    },
+    {
+      "name": "Penalty Box",
+      "description": "If you kill another player, you are not allowed to use stratagems for 2 minutes."
+    },
+    {
+      "name": "Melee Competition",
+      "description": "Who can get the most melee kills?  I guess we'll find out..."
+    },
+    {
+      "name": "No Stratagems",
+      "description": "No stratagems allowed.  Bring in the minimum required, but you can't use them."
+    },
+    {
+      "name": "Sabatosh",
+      "description": "Do what you can to make the mission fail, however, if you get called out by teammates, you fail."
+    },
+    {
+      "name": "Lasers Only",
+      "description": "The only weapons and stratagems allowed are lasers."
+    },
+    {
+      "name": "ARCs Only",
+      "description": "The only weapons and stratagems allowed are ARCs."
+    },
+    {
+      "name": "Fire Only",
+      "description": "The only weapons and stratagems allowed are fire weapons."
+    },
+    {
+      "name": "Mech it happen",
+      "description": "You must bring in a mech for this mission."
+    },
+    {
+      "name": "How about a slice?",
+      "description": "You must bring in a melee weapon for your secondary."
+    },
+    {
+      "name": "Sample Race",
+      "description": "Who can find the most samples?  It's like an Easter Egg hunt!"
+    },
+    {
+      "name": "Body Guard",
+      "description": "You must follow another player around closely and protect them. If they die, you fail."
+    },
+    {
+      "name": "Bombastic Extraction",
+      "description": "At extraction time, you must run off the map to start the traiter barage and then run back to extraction."
+    },  
+    {
+      "name": "Going for a ride",
+      "description": "Bugs: Charger. Bots: Hulk. Bring in jetpacks/hoverpacks. Must ride a bug/bot for 30 seconds."
+    },
+    {
+      "name": "You are a Helldiver!",
+      "description": "Everytime your diver says something, you must repeat it with gusto. Bonus points for talking like a Helldiver the entire time."
+    },
+    {
+      "name": "No Turrets",
+      "description": "No turrets allowed.  You'll have to make do with what you have."
+    },
+    {
+      "name": "Pack Mule",
+      "description": "One player is deemed the Pack Mule. They have a supply pack. No supply pods allowed. If the pack mule dies once, no more ammo except for ground loot"
+    }
+    
   ]
 } 

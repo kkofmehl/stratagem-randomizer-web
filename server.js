@@ -18,6 +18,7 @@ const loadItemsData = () => {
       grenades: itemsData.GRENADES.map(item => item.name),
       armor: itemsData.ARMOR.map(item => item.name),
       boosters: itemsData.BOOSTERS.map(item => item.name),
+      sideMissions: itemsData["SIDE MISSIONS"].map(item => item.name),
       itemsData: itemsData // Store the full data with icons
     };
 
@@ -37,7 +38,7 @@ const loadItemsData = () => {
     items.stratagemCategories = stratagemCategories;
     items.stratagemsData = stratagemsData; // Store the full data with icons
     
-    console.log(`Loaded items from JSON: primary=${items.primary.length}, secondary=${items.secondary.length}, grenades=${items.grenades.length}, armor=${items.armor.length}, boosters=${items.boosters.length}`);
+    console.log(`Loaded items from JSON: primary=${items.primary.length}, secondary=${items.secondary.length}, grenades=${items.grenades.length}, armor=${items.armor.length}, boosters=${items.boosters.length}, sideMissions=${items.sideMissions.length}`);
     console.log(`Loaded stratagems from JSON: ${allStratagems.length} stratagems (${Object.keys(stratagemCategories).join(', ')})`);
 
     return items;
@@ -255,6 +256,7 @@ app.get('/api/random-loadout', (req, res) => {
     const randomGrenade = getRandomItemWithData(items.grenades, items.itemsData, 'GRENADES');
     const randomArmor = getRandomItemWithData(items.armor, items.itemsData, 'ARMOR');
     const randomBooster = getRandomItemWithData(items.boosters, items.itemsData, 'BOOSTERS');
+    const randomSideMission = getRandomItemWithData(items.sideMissions, items.itemsData, 'SIDE MISSIONS');
     
     // Get 4 random stratagems
     const randomStratagems = getRandomStratagems(
@@ -270,6 +272,7 @@ app.get('/api/random-loadout', (req, res) => {
       grenade: randomGrenade,
       armor: randomArmor,
       booster: randomBooster,
+      sideMission: randomSideMission,
       stratagems: randomStratagems
     };
     
@@ -355,6 +358,16 @@ app.get('/api/random/armor', (req, res) => {
   } catch (error) {
     console.error('Error getting random armor:', error);
     res.status(500).json({ error: 'Failed to get random armor' });
+  }
+});
+
+app.get('/api/random/side-mission', (req, res) => {
+  try {
+    const randomSideMission = getRandomItemWithData(items.sideMissions, items.itemsData, 'SIDE MISSIONS');
+    res.json({ sideMission: randomSideMission });
+  } catch (error) {
+    console.error('Error getting random side mission:', error);
+    res.status(500).json({ error: 'Failed to get random side mission' });
   }
 });
 

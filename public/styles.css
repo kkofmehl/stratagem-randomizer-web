@@ -673,8 +673,18 @@ footer {
 }
 
 .item-name {
+    font-weight: bold;
+    margin-left: 0.5rem;
     flex: 1;
-    font-weight: 500;
+}
+
+.item-description {
+    display: block;
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+    font-style: italic;
 }
 
 /* Update stratagem icon styles to be consistent */

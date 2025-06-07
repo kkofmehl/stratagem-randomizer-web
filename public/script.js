@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grenadeElement = document.getElementById('grenade');
     const armorElement = document.getElementById('armor');
     const boosterElement = document.getElementById('booster');
+    const sideMissionElement = document.getElementById('side-mission');
     const stratagemsElement = document.getElementById('stratagems');
     
     // Modal elements
@@ -365,6 +366,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             boosterElement.appendChild(boosterItem);
+        }
+        
+        // Update side mission if present in data
+        if (data.sideMission) {
+            sideMissionElement.innerHTML = '';
+            const sideMissionItem = document.createElement('div');
+            sideMissionItem.className = 'loadout-item-with-icon';
+            
+            // Create content container
+            const contentContainer = document.createElement('div');
+            contentContainer.className = 'item-content';
+            
+            // Add name
+            const nameElement = document.createElement('span');
+            nameElement.className = 'item-name';
+            nameElement.textContent = typeof data.sideMission === 'object' ? data.sideMission.name : data.sideMission;
+            contentContainer.appendChild(nameElement);
+            
+            // Add description if available
+            if (typeof data.sideMission === 'object' && data.sideMission.description) {
+                const descriptionElement = document.createElement('span');
+                descriptionElement.className = 'item-description';
+                descriptionElement.textContent = data.sideMission.description;
+                contentContainer.appendChild(descriptionElement);
+            }
+            
+            sideMissionItem.appendChild(contentContainer);
+            sideMissionElement.appendChild(sideMissionItem);
         }
         
         // Update stratagems if present in data

@@ -38,6 +38,16 @@ self.addEventListener('activate', event => {
 
 // Fetch event - serve from cache, fall back to network, then offline page
 self.addEventListener('fetch', event => {
+  // Skip caching for chrome-extension URLs
+  if (event.request.url.startsWith('chrome-extension://')) {
+    return;
+  }
+  
+  // Skip caching for API requests
+  if (event.request.url.includes('/api/')) {
+    return fetch(event.request);
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -55,10 +65,13 @@ self.addEventListener('fetch', event => {
             // Clone the response
             const responseToCache = response.clone();
 
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
+            // Only cache static assets, not API responses
+            if (!event.request.url.includes('/api/')) {
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  cache.put(event.request, responseToCache);
+                });
+            }
 
             return response;
           })

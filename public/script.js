@@ -155,6 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
             queryParams.append('eagles', stratagemOptions.eagles);
             queryParams.append('orbitals', stratagemOptions.orbitals);
             queryParams.append('support', stratagemOptions.support);
+            // Add timestamp to prevent caching
+            queryParams.append('t', Date.now());
             
             console.log("Sending stratagem options to server:", Object.fromEntries(queryParams));
             
@@ -188,17 +190,21 @@ document.addEventListener('DOMContentLoaded', () => {
             let url = `/api/random/${type}`;
             
             // Add stratagem options if type is 'stratagems'
+            const queryParams = new URLSearchParams();
+            
+            // Add timestamp to prevent caching
+            queryParams.append('t', Date.now());
+            
             if (type === 'stratagems') {
-                const queryParams = new URLSearchParams();
                 queryParams.append('defense', stratagemOptions.defense);
                 queryParams.append('eagles', stratagemOptions.eagles);
                 queryParams.append('orbitals', stratagemOptions.orbitals);
                 queryParams.append('support', stratagemOptions.support);
                 
                 console.log(`Rolling stratagems with options: DEFENSE=${stratagemOptions.defense}, EAGLES=${stratagemOptions.eagles}, ORBITALS=${stratagemOptions.orbitals}, SUPPORT=${stratagemOptions.support}`);
-                
-                url += `?${queryParams.toString()}`;
             }
+            
+            url += `?${queryParams.toString()}`;
             
             const response = await fetch(url);
             if (!response.ok) {
@@ -467,6 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
             queryParams.append('orbitals', stratagemOptions.orbitals);
             queryParams.append('support', stratagemOptions.support);
             queryParams.append('index', index);
+            // Add timestamp to prevent caching
+            queryParams.append('t', Date.now());
             
             // Add current stratagems as excluded items to avoid duplicates
             currentStratagems.forEach(name => {

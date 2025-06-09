@@ -222,16 +222,49 @@
     
     <script src="script.js"></script>
     <script>
-        // Register service worker for PWA
+        // Unregister any existing service workers first
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                for (let registration of registrations) {
+                    console.log('Unregistering old service worker');
+                    registration.unregister();
+                }
+            });
+        }
+        
+        // Register service worker for PWA with version control
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
+                // Add a version query parameter to force refresh when the service worker file changes
+                navigator.serviceWorker.register('/service-worker.js?v=2')
                     .then(registration => {
                         console.log('Service Worker registered with scope:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            console.log('New service worker being installed');
+                            const newWorker = registration.installing;
+                            
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('New content is available; please refresh.');
+                                    // Force refresh when new content is available
+                                    if (confirm('New version available! Refresh now to update?')) {
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        });
                     })
                     .catch(error => {
                         console.error('Service Worker registration failed:', error);
                     });
+                    
+                // Detect controller change and refresh the page
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    console.log('Controller changed, reloading page');
+                    window.location.reload();
+                });
             });
         }
     </script>

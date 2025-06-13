@@ -143,6 +143,10 @@
     {
       "name": "R-2 Amendment",
       "icon": "/images/primary/R-2_Amendment_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR-32 Pacifier",
+      "icon": "/images/icons/icon-192x192.png"
     }
   ],
   "SECONDARY": [
@@ -263,6 +267,10 @@
     {
       "name": "TED-63 Dynamite",
       "icon": "/images/grenade/TED-63_Dynamite_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-109 Urchin",
+      "icon": "/images/icons/icon-192x192.png"
     }
   ],
   "ARMOR": [
@@ -455,6 +463,16 @@
       "name": "RE-2310 Honorary Guard",
       "icon": null,
       "class": "Light"
+    },
+    {
+      "name": "B-20 Corrections Officer",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "BP-32 Jackboot",
+      "icon": null,
+      "class": "Light"
     }
   ],
   "BOOSTERS": [
@@ -521,6 +539,10 @@
     {
       "name": "Firebomb Hellpods",
       "icon": "/images/boosters/Firebomb_Hellpods_Booster.JPG"
+    },
+    {
+      "name": "Stun Pods",
+      "icon": "/images/icons/icon-192x192.png"
     }
   ],
   "SIDE MISSIONS": [

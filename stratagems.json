@@ -244,7 +244,7 @@
     },
     {
       "name": "Guard Dog Rover (K9)",
-      "icon": "/images/icons/icon-192x192.png"
+      "icon": "/images/icons/guard-dog-iiii-rover-arc.png"
     },
     {
       "name": "EXO-45 Patriot Exosuit",
@@ -280,7 +280,7 @@
     },
     {
       "name": "De-Escalator",
-      "icon": "/images/icons/icon-192x192.png"
+      "icon": "/images/icons/de-escalator.png"
     }
   ]
 } 

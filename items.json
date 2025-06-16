@@ -146,7 +146,7 @@
     },
     {
       "name": "AR-32 Pacifier",
-      "icon": "/images/icons/icon-192x192.png"
+      "icon": "/images/primary/AR-32_Pacifier_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [
@@ -270,7 +270,7 @@
     },
     {
       "name": "G-109 Urchin",
-      "icon": "/images/icons/icon-192x192.png"
+      "icon": "/images/grenade/G-109_Urchin_Throwable_Weaponry.png"
     }
   ],
   "ARMOR": [
@@ -542,7 +542,7 @@
     },
     {
       "name": "Stun Pods",
-      "icon": "/images/icons/icon-192x192.png"
+      "icon": "/images/boosters/Stun_Pods_Booster.JPG"
     }
   ],
   "SIDE MISSIONS": [

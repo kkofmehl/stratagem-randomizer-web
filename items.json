@@ -213,6 +213,10 @@
     {
       "name": "CQC-30 Stun Baton",
       "icon": "/images/secondary/CQC-30_Stun_Baton_Secondary_Weaponry.png"
+    },
+    {
+      "name": "P-92 Warrent",
+      "icon": "/images/secondary/P-92_Warrent_Secondary_Weaponry.png"
     }
   ],
   "GRENADES": [

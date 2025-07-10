@@ -244,6 +244,7 @@
     },
     {
       "name": "Guard Dog Rover (K9)",
+      "warbond": "Force of Law",
       "icon": "/images/icons/guard-dog-iiii-rover-arc.png"
     },
     {
@@ -256,6 +257,7 @@
     },
     {
       "name": "TX-41 Sterilizer",
+      "warbond": "Chemical Agents",
       "icon": "/images/icons/tx-41-sterilizer.png"
     },
     {
@@ -264,22 +266,37 @@
     },
     {
       "name": "SH-51 Directional Shield",
+      "warbond": "Urban Legends",
       "icon": "/images/icons/sh-51-directional-shield.png"
     },
     {
+      "name": "A/FLAM-40 Flame Sentry",
+      "warbond": "Urban Legends",
+      "icon": "/images/icons/flamethrower-sentry.png"
+    },
+    {
+      "name": "E/AT-12 Anti-Tank Emplacement",
+      "warbond": "Urban Legends",
+      "icon": "/images/icons/anti-tank-placement.png"
+    },
+    {
       "name": "Hover Pack",
+      "warbond": "Borderline Justice",
       "icon": "/images/icons/hover-pack.png"
     },
     {
       "name": "One True Flag",
+      "warbond": "Masters of Ceremony",
       "icon": "/images/icons/one-true-flag.png"
     },
     {
       "name": "Portable Hellbomb",
+      "warbond": "Servants of Freedom",
       "icon": "/images/icons/portable-hellbomb.png"
     },
     {
-      "name": "De-Escalator",
+      "name": "GL-52 De-Escalator",
+      "warbond": "Force of Law",
       "icon": "/images/icons/de-escalator.png"
     }
   ]

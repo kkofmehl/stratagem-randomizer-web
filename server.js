@@ -58,6 +58,52 @@ const loadItemsData = () => {
   }
 };
 
+// Function to get all unique warbonds from items and stratagems
+const getAllWarbonds = () => {
+  const itemsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'items.json'), 'utf8'));
+  const stratagemsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'stratagems.json'), 'utf8'));
+  
+  const warbonds = new Set();
+  
+  // Collect warbonds from items
+  Object.values(itemsData).forEach(category => {
+    if (Array.isArray(category)) {
+      category.forEach(item => {
+        if (item.warbond) {
+          warbonds.add(item.warbond);
+        }
+      });
+    }
+  });
+  
+  // Collect warbonds from stratagems
+  Object.values(stratagemsData).forEach(category => {
+    if (Array.isArray(category)) {
+      category.forEach(stratagem => {
+        if (stratagem.warbond) {
+          warbonds.add(stratagem.warbond);
+        }
+      });
+    }
+  });
+  
+  return Array.from(warbonds).sort();
+};
+
+// Function to filter items by selected warbonds
+const filterItemsByWarbonds = (items, selectedWarbonds) => {
+  if (!selectedWarbonds || selectedWarbonds.length === 0) {
+    return items;
+  }
+  
+  const selectedWarbandsSet = new Set(selectedWarbonds);
+  return items.filter(item => {
+    // If item doesn't have a warbond property, include it (backwards compatibility)
+    if (!item.warbond) return true;
+    return selectedWarbandsSet.has(item.warbond);
+  });
+};
+
 // Function to get a random item from an array
 const getRandomItem = (array) => {
   if (!array || array.length === 0) return null;
@@ -66,7 +112,7 @@ const getRandomItem = (array) => {
 
 // Function to get 4 random stratagems without duplicates
 // Modified to return full stratagem objects with icons
-const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, options = {}, count = 4) => {
+const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, options = {}, count = 4, selectedWarbonds = []) => {
   if (!stratagems || stratagems.length === 0) return [];
   
   // Default options for all categories
@@ -87,8 +133,12 @@ const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, op
   
   if (onlyCategory) {
     console.log(`Only using stratagems from category: ${onlyCategory}`);
-    // Use only stratagems from the selected category
-    const availableStratagemNames = [...stratagemCategories[onlyCategory]];
+    // Use only stratagems from the selected category, filtered by warbonds
+    const categoryStratagems = stratagemsData[onlyCategory] || [];
+    const availableStratagemNames = categoryStratagems
+      .filter(stratagem => selectedWarbonds.length === 0 || !stratagem.warbond || selectedWarbonds.includes(stratagem.warbond))
+      .map(stratagem => stratagem.name);
+    
     const selectedStratagems = [];
     
     for (let i = 0; i < count && availableStratagemNames.length > 0; i++) {
@@ -96,8 +146,10 @@ const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, op
       const selectedName = availableStratagemNames[index];
       
       // Find the full stratagem object with icon
-      const selectedStratagem = stratagemsData[onlyCategory].find(s => s.name === selectedName);
-      selectedStratagems.push(selectedStratagem);
+      const selectedStratagem = categoryStratagems.find(s => s.name === selectedName);
+      if (selectedStratagem) {
+        selectedStratagems.push(selectedStratagem);
+      }
       availableStratagemNames.splice(index, 1);
     }
     
@@ -124,20 +176,25 @@ const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, op
   console.log(`Light categories: ${lightCategories.join(', ') || 'none'}`);
   console.log(`Excluded categories: ${excludedCategories.join(', ') || 'none'}`);
   
-  // Create a map to look up full stratagem objects
+  // Create a map to look up full stratagem objects with warbond filtering
   const stratagemMap = {};
   for (const [category, stratagems] of Object.entries(stratagemsData)) {
     for (const stratagem of stratagems) {
-      stratagemMap[stratagem.name] = { ...stratagem, category };
+      // Apply warbond filtering
+      if (selectedWarbonds.length === 0 || !stratagem.warbond || selectedWarbonds.includes(stratagem.warbond)) {
+        stratagemMap[stratagem.name] = { ...stratagem, category };
+      }
     }
   }
   
-  // Create pools of stratagems from each active category
+  // Create pools of stratagems from each active category with warbond filtering
   let availableStratagems = [];
   
   for (const [category, categoryStratagems] of Object.entries(stratagemCategories)) {
     if (!excludedCategories.includes(category)) {
-      availableStratagems = [...availableStratagems, ...categoryStratagems];
+      // Filter by warbonds - only include stratagems that exist in stratagemMap (passed warbond filter)
+      const filteredCategoryStratagems = categoryStratagems.filter(name => stratagemMap[name]);
+      availableStratagems = [...availableStratagems, ...filteredCategoryStratagems];
     }
   }
   
@@ -150,7 +207,8 @@ const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, op
   
   // First, ensure we get at least 2 stratagems from each heavy category
   for (const category of heavyCategories) {
-    const categoryStratagemNames = [...stratagemCategories[category]];
+    // Filter category stratagems by warbond
+    const categoryStratagemNames = stratagemCategories[category].filter(name => stratagemMap[name]);
     console.log(`Adding at least 2 stratagems from heavy category ${category}`);
     
     // Get at least 2 stratagems from this category if possible
@@ -159,8 +217,10 @@ const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, op
       const index = Math.floor(Math.random() * categoryStratagemNames.length);
       const selectedName = categoryStratagemNames[index];
       const selectedStratagem = stratagemMap[selectedName];
-      selectedStratagems.push(selectedStratagem);
-      heavyStratagemCount++;
+      if (selectedStratagem) {
+        selectedStratagems.push(selectedStratagem);
+        heavyStratagemCount++;
+      }
       
       // Remove the selected stratagem from the category and available pools
       categoryStratagemNames.splice(index, 1);
@@ -178,19 +238,22 @@ const getRandomStratagems = (stratagems, stratagemCategories, stratagemsData, op
   for (const category of lightCategories) {
     if (selectedStratagems.length >= count) break;
     
-    const categoryStratagemNames = [...stratagemCategories[category]];
+    // Filter category stratagems by warbond
+    const categoryStratagemNames = stratagemCategories[category].filter(name => stratagemMap[name]);
     if (categoryStratagemNames.length > 0) {
       console.log(`Adding at most 1 stratagem from light category ${category}`);
       const index = Math.floor(Math.random() * categoryStratagemNames.length);
       const selectedName = categoryStratagemNames[index];
       const selectedStratagem = stratagemMap[selectedName];
-      selectedStratagems.push(selectedStratagem);
-      lightCategoryItems[category] = true;
-      
-      // Remove from available pool
-      const availableIndex = availableStratagems.findIndex(s => s === selectedName);
-      if (availableIndex !== -1) {
-        availableStratagems.splice(availableIndex, 1);
+      if (selectedStratagem) {
+        selectedStratagems.push(selectedStratagem);
+        lightCategoryItems[category] = true;
+        
+        // Remove from available pool
+        const availableIndex = availableStratagems.findIndex(s => s === selectedName);
+        if (availableIndex !== -1) {
+          availableStratagems.splice(availableIndex, 1);
+        }
       }
     }
   }
@@ -258,22 +321,35 @@ app.get('/api/random-loadout', (req, res) => {
       SUPPORT: req.query.support || 'Normal'
     };
     
+    // Handle warbond filtering
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    
     console.log("Generating random loadout with stratagem options:", stratagemOptions);
+    console.log("Selected warbonds:", selectedWarbonds);
     
-    // Get random items
-    const randomPrimary = getRandomItemWithData(items.primary, items.itemsData, 'PRIMARY');
-    const randomSecondary = getRandomItemWithData(items.secondary, items.itemsData, 'SECONDARY');
-    const randomGrenade = getRandomItemWithData(items.grenades, items.itemsData, 'GRENADES');
-    const randomArmor = getRandomItemWithData(items.armor, items.itemsData, 'ARMOR');
-    const randomBooster = getRandomItemWithData(items.boosters, items.itemsData, 'BOOSTERS');
-    const randomSideMission = getRandomItemWithData(items.sideMissions, items.itemsData, 'SIDE MISSIONS');
+    // Get random items with warbond filtering
+    const filteredPrimary = filterItemsByWarbonds(items.itemsData.PRIMARY, selectedWarbonds);
+    const filteredSecondary = filterItemsByWarbonds(items.itemsData.SECONDARY, selectedWarbonds);
+    const filteredGrenades = filterItemsByWarbonds(items.itemsData.GRENADES, selectedWarbonds);
+    const filteredArmor = filterItemsByWarbonds(items.itemsData.ARMOR, selectedWarbonds);
+    const filteredBoosters = filterItemsByWarbonds(items.itemsData.BOOSTERS, selectedWarbonds);
+    const filteredSideMissions = filterItemsByWarbonds(items.itemsData["SIDE MISSIONS"], selectedWarbonds);
     
-    // Get 4 random stratagems
+    const randomPrimary = getRandomItemWithData(filteredPrimary.map(item => item.name), items.itemsData, 'PRIMARY');
+    const randomSecondary = getRandomItemWithData(filteredSecondary.map(item => item.name), items.itemsData, 'SECONDARY');
+    const randomGrenade = getRandomItemWithData(filteredGrenades.map(item => item.name), items.itemsData, 'GRENADES');
+    const randomArmor = getRandomItemWithData(filteredArmor.map(item => item.name), items.itemsData, 'ARMOR');
+    const randomBooster = getRandomItemWithData(filteredBoosters.map(item => item.name), items.itemsData, 'BOOSTERS');
+    const randomSideMission = getRandomItemWithData(filteredSideMissions.map(item => item.name), items.itemsData, 'SIDE MISSIONS');
+    
+    // Get 4 random stratagems with warbond filtering
     const randomStratagems = getRandomStratagems(
       items.stratagems,
       items.stratagemCategories,
       items.stratagemsData,
-      stratagemOptions
+      stratagemOptions,
+      4,
+      selectedWarbonds
     );
     
     const loadout = {
@@ -297,7 +373,9 @@ app.get('/api/random-loadout', (req, res) => {
 // Routes for getting random items of each type
 app.get('/api/random/primary', (req, res) => {
   try {
-    const randomPrimary = getRandomItemWithData(items.primary, items.itemsData, 'PRIMARY');
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    const filteredPrimary = filterItemsByWarbonds(items.itemsData.PRIMARY, selectedWarbonds);
+    const randomPrimary = getRandomItemWithData(filteredPrimary.map(item => item.name), items.itemsData, 'PRIMARY');
     res.json({ primary: randomPrimary });
   } catch (error) {
     console.error('Error getting random primary weapon:', error);
@@ -307,7 +385,9 @@ app.get('/api/random/primary', (req, res) => {
 
 app.get('/api/random/secondary', (req, res) => {
   try {
-    const randomSecondary = getRandomItemWithData(items.secondary, items.itemsData, 'SECONDARY');
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    const filteredSecondary = filterItemsByWarbonds(items.itemsData.SECONDARY, selectedWarbonds);
+    const randomSecondary = getRandomItemWithData(filteredSecondary.map(item => item.name), items.itemsData, 'SECONDARY');
     res.json({ secondary: randomSecondary });
   } catch (error) {
     console.error('Error getting random secondary weapon:', error);
@@ -317,7 +397,9 @@ app.get('/api/random/secondary', (req, res) => {
 
 app.get('/api/random/grenade', (req, res) => {
   try {
-    const randomGrenade = getRandomItemWithData(items.grenades, items.itemsData, 'GRENADES');
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    const filteredGrenades = filterItemsByWarbonds(items.itemsData.GRENADES, selectedWarbonds);
+    const randomGrenade = getRandomItemWithData(filteredGrenades.map(item => item.name), items.itemsData, 'GRENADES');
     res.json({ grenade: randomGrenade });
   } catch (error) {
     console.error('Error getting random grenade:', error);
@@ -327,7 +409,9 @@ app.get('/api/random/grenade', (req, res) => {
 
 app.get('/api/random/booster', (req, res) => {
   try {
-    const randomBooster = getRandomItemWithData(items.boosters, items.itemsData, 'BOOSTERS');
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    const filteredBoosters = filterItemsByWarbonds(items.itemsData.BOOSTERS, selectedWarbonds);
+    const randomBooster = getRandomItemWithData(filteredBoosters.map(item => item.name), items.itemsData, 'BOOSTERS');
     res.json({ booster: randomBooster });
   } catch (error) {
     console.error('Error getting random booster:', error);
@@ -344,13 +428,18 @@ app.get('/api/random/stratagems', (req, res) => {
       SUPPORT: req.query.support || 'Normal'
     };
     
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    
     console.log("Getting random stratagems with options:", stratagemOptions);
+    console.log("Selected warbonds for stratagems:", selectedWarbonds);
     
     const randomStratagems = getRandomStratagems(
       items.stratagems,
       items.stratagemCategories,
       items.stratagemsData,
-      stratagemOptions
+      stratagemOptions,
+      4,
+      selectedWarbonds
     );
     
     res.json({ stratagems: randomStratagems });
@@ -362,8 +451,9 @@ app.get('/api/random/stratagems', (req, res) => {
 
 app.get('/api/random/armor', (req, res) => {
   try {
-    // Use getRandomItemWithData to get armor with potential icons
-    const randomArmor = getRandomItemWithData(items.armor, items.itemsData, 'ARMOR');
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    const filteredArmor = filterItemsByWarbonds(items.itemsData.ARMOR, selectedWarbonds);
+    const randomArmor = getRandomItemWithData(filteredArmor.map(item => item.name), items.itemsData, 'ARMOR');
     res.json({ armor: randomArmor });
   } catch (error) {
     console.error('Error getting random armor:', error);
@@ -373,7 +463,9 @@ app.get('/api/random/armor', (req, res) => {
 
 app.get('/api/random/side-mission', (req, res) => {
   try {
-    const randomSideMission = getRandomItemWithData(items.sideMissions, items.itemsData, 'SIDE MISSIONS');
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    const filteredSideMissions = filterItemsByWarbonds(items.itemsData["SIDE MISSIONS"], selectedWarbonds);
+    const randomSideMission = getRandomItemWithData(filteredSideMissions.map(item => item.name), items.itemsData, 'SIDE MISSIONS');
     res.json({ sideMission: randomSideMission });
   } catch (error) {
     console.error('Error getting random side mission:', error);
@@ -397,14 +489,20 @@ app.get('/api/random/stratagem', (req, res) => {
     
     const index = parseInt(req.query.index) || 0;
     
+    const selectedWarbonds = req.query.warbonds ? req.query.warbonds.split(',') : [];
+    
     console.log(`Getting random stratagem with options: ${JSON.stringify(stratagemOptions)}`);
     console.log(`Excluded stratagems: ${excludedStratagems.join(', ')}`);
+    console.log(`Selected warbonds: ${selectedWarbonds.join(', ')}`);
     
-    // Create a map to look up full stratagem objects
+    // Create a map to look up full stratagem objects with warbond filtering
     const stratagemMap = {};
     for (const [category, stratagems] of Object.entries(items.stratagemsData)) {
       for (const stratagem of stratagems) {
-        stratagemMap[stratagem.name] = { ...stratagem, category };
+        // Apply warbond filtering
+        if (selectedWarbonds.length === 0 || !stratagem.warbond || selectedWarbonds.includes(stratagem.warbond)) {
+          stratagemMap[stratagem.name] = { ...stratagem, category };
+        }
       }
     }
     
@@ -416,7 +514,8 @@ app.get('/api/random/stratagem', (req, res) => {
     
     if (onlyCategory) {
       console.log(`Only using stratagems from category: ${onlyCategory}`);
-      availableStratagemNames = [...items.stratagemCategories[onlyCategory]];
+      // Filter by warbonds - only include stratagems that exist in stratagemMap (passed warbond filter)
+      availableStratagemNames = items.stratagemCategories[onlyCategory].filter(name => stratagemMap[name]);
     } else {
       // Get the categories marked as "No" (excluded)
       const excludedCategories = Object.entries(stratagemOptions)
@@ -426,7 +525,9 @@ app.get('/api/random/stratagem', (req, res) => {
       // Add stratagems from all categories except excluded ones
       for (const [category, categoryStratagems] of Object.entries(items.stratagemCategories)) {
         if (!excludedCategories.includes(category)) {
-          availableStratagemNames = [...availableStratagemNames, ...categoryStratagems];
+          // Filter by warbonds - only include stratagems that exist in stratagemMap (passed warbond filter)
+          const filteredCategoryStratagems = categoryStratagems.filter(name => stratagemMap[name]);
+          availableStratagemNames = [...availableStratagemNames, ...filteredCategoryStratagems];
         }
       }
       
@@ -449,6 +550,18 @@ app.get('/api/random/stratagem', (req, res) => {
   } catch (error) {
     console.error('Error getting random stratagem:', error);
     res.status(500).json({ error: 'Failed to get random stratagem' });
+  }
+});
+
+// Get all available warbonds
+app.get('/api/warbonds', (req, res) => {
+  try {
+    const warbonds = getAllWarbonds();
+    console.log(`Returning ${warbonds.length} warbonds:`, warbonds);
+    res.json(warbonds);
+  } catch (error) {
+    console.error('Error getting warbonds:', error);
+    res.status(500).json({ error: 'Failed to get warbonds' });
   }
 });
 

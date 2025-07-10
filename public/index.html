@@ -25,6 +25,7 @@
         <div class="controls">
             <button id="randomize-all-btn" class="primary-btn"><i class="fas fa-dice"></i> Roll Complete Loadout</button>
             <button id="stratagem-options-btn" class="secondary-btn"><i class="fas fa-sliders"></i> Stratagem Options</button>
+            <button id="warbond-filter-btn" class="secondary-btn"><i class="fas fa-filter"></i> Warbond Filter</button>
         </div>
         
         <div class="loadout-container">
@@ -216,6 +217,28 @@
             
             <div class="modal-actions">
                 <button id="apply-options-btn" class="primary-btn"><i class="fas fa-check"></i> Apply Options</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Warbond Filter Modal -->
+    <div id="warbond-filter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-warbond">&times;</span>
+            <h2><i class="fas fa-filter"></i> Warbond Filter</h2>
+            <p class="modal-description">Select which warbonds you own. Only items from selected warbonds will appear in randomization.</p>
+            
+            <div class="warbond-filter-controls">
+                <button id="select-all-warbonds" class="filter-control-btn"><i class="fas fa-check-square"></i> Select All</button>
+                <button id="deselect-all-warbonds" class="filter-control-btn"><i class="fas fa-square"></i> Deselect All</button>
+            </div>
+            
+            <div class="warbond-options" id="warbond-options">
+                <!-- Warbond checkboxes will be dynamically populated here -->
+            </div>
+            
+            <div class="modal-actions">
+                <button id="apply-warbond-filter-btn" class="primary-btn"><i class="fas fa-check"></i> Apply Filter</button>
             </div>
         </div>
     </div>

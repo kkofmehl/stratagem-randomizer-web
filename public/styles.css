@@ -731,4 +731,151 @@ footer {
 .armor-class-heavy {
     background-color: #f44336;
     color: #fff;
+}
+
+/* Warbond Filter Styles */
+.warbond-filter-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.filter-control-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-control-btn:hover {
+    background-color: #555;
+    border-color: #777;
+}
+
+.filter-control-btn i {
+    margin-right: 5px;
+}
+
+.warbond-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.warbond-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.warbond-option:hover {
+    background-color: rgba(255, 152, 0, 0.1);
+    border-color: #ff9800;
+}
+
+.warbond-option input[type="checkbox"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: #ff9800;
+    cursor: pointer;
+}
+
+.warbond-label {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    flex: 1;
+}
+
+.warbond-name {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.warbond-type {
+    font-size: 0.8rem;
+    color: #aaa;
+    font-style: italic;
+}
+
+.warbond-option.selected {
+    background-color: rgba(255, 152, 0, 0.2);
+    border-color: #ff9800;
+}
+
+.close-warbond {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-warbond:hover,
+.close-warbond:focus {
+    color: #ff9800;
+    text-decoration: none;
+}
+
+.modal-description {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Custom scrollbar for warbond options */
+.warbond-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.warbond-options::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.warbond-options::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.warbond-options::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+/* Mobile responsive adjustments for warbond filter */
+@media (max-width: 768px) {
+    .warbond-options {
+        grid-template-columns: 1fr;
+        max-height: 300px;
+    }
+    
+    .warbond-filter-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-control-btn {
+        width: 200px;
+    }
 } 

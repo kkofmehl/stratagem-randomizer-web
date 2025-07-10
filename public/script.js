@@ -15,6 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.querySelector('.close');
     const applyOptionsBtn = document.getElementById('apply-options-btn');
     
+    // Warbond filter elements
+    const warbondFilterBtn = document.getElementById('warbond-filter-btn');
+    const warbondFilterModal = document.getElementById('warbond-filter-modal');
+    const closeWarbondModalBtn = document.querySelector('.close-warbond');
+    const applyWarbondFilterBtn = document.getElementById('apply-warbond-filter-btn');
+    const selectAllWarbandsBtn = document.getElementById('select-all-warbonds');
+    const deselectAllWarbandsBtn = document.getElementById('deselect-all-warbonds');
+    const warbondOptionsContainer = document.getElementById('warbond-options');
+    
     // Stratagem category options - initialize with values from radio buttons
     let stratagemOptions = {
         defense: document.querySelector('input[name="defense"]:checked')?.value || 'Normal',
@@ -22,6 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
         orbitals: document.querySelector('input[name="orbitals"]:checked')?.value || 'Normal',
         support: document.querySelector('input[name="support"]:checked')?.value || 'Normal'
     };
+    
+    // Warbond filter options - all selected by default
+    let selectedWarbonds = new Set();
+    let allWarbonds = [];
     
     console.log("Initial stratagem options:", stratagemOptions);
     
@@ -142,6 +155,109 @@ document.addEventListener('DOMContentLoaded', () => {
         applyOptionConstraints();
     };
     
+    // Function to load all available warbonds from the server
+    const loadWarbonds = async () => {
+        try {
+            const response = await fetch('/api/warbonds');
+            if (!response.ok) {
+                throw new Error('Failed to fetch warbonds');
+            }
+            const warbonds = await response.json();
+            allWarbonds = warbonds;
+            
+            // Select all warbonds by default
+            selectedWarbonds = new Set(warbonds);
+            
+            // Populate the warbond filter UI
+            populateWarbondOptions();
+            
+            console.log("Loaded warbonds:", warbonds);
+        } catch (error) {
+            console.error('Error loading warbonds:', error);
+            // Default to empty array if loading fails
+            allWarbonds = [];
+            selectedWarbonds = new Set();
+        }
+    };
+    
+    // Function to populate the warbond filter options
+    const populateWarbondOptions = () => {
+        warbondOptionsContainer.innerHTML = '';
+        
+        allWarbonds.forEach(warbond => {
+            const option = document.createElement('div');
+            option.className = 'warbond-option';
+            if (selectedWarbonds.has(warbond)) {
+                option.classList.add('selected');
+            }
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = warbond;
+            checkbox.checked = selectedWarbonds.has(warbond);
+            checkbox.addEventListener('change', handleWarbondToggle);
+            
+            const label = document.createElement('label');
+            label.className = 'warbond-label';
+            label.addEventListener('click', () => {
+                checkbox.checked = !checkbox.checked;
+                checkbox.dispatchEvent(new Event('change'));
+            });
+            
+            const name = document.createElement('div');
+            name.className = 'warbond-name';
+            name.textContent = warbond;
+            
+            const type = document.createElement('div');
+            type.className = 'warbond-type';
+            // Classify warbonds
+            if (warbond === 'Basic') {
+                type.textContent = 'Free (Base Game)';
+            } else if (warbond === 'Steeled Veterans' || warbond === 'Cutting Edge') {
+                type.textContent = 'Premium Warbond';
+            } else {
+                type.textContent = 'Premium Warbond';
+            }
+            
+            label.appendChild(name);
+            label.appendChild(type);
+            
+            option.appendChild(checkbox);
+            option.appendChild(label);
+            
+            warbondOptionsContainer.appendChild(option);
+        });
+    };
+    
+    // Function to handle warbond toggle
+    const handleWarbondToggle = (event) => {
+        const warbond = event.target.value;
+        const isChecked = event.target.checked;
+        const option = event.target.closest('.warbond-option');
+        
+        if (isChecked) {
+            selectedWarbonds.add(warbond);
+            option.classList.add('selected');
+        } else {
+            selectedWarbonds.delete(warbond);
+            option.classList.remove('selected');
+        }
+        
+        console.log("Updated selected warbonds:", Array.from(selectedWarbonds));
+    };
+    
+    // Function to select all warbonds
+    const selectAllWarbonds = () => {
+        selectedWarbonds = new Set(allWarbonds);
+        populateWarbondOptions();
+    };
+    
+    // Function to deselect all warbonds
+    const deselectAllWarbonds = () => {
+        selectedWarbonds.clear();
+        populateWarbondOptions();
+    };
+    
     // Function to get a complete random loadout from the API
     const getRandomLoadout = async () => {
         try {
@@ -149,12 +265,18 @@ document.addEventListener('DOMContentLoaded', () => {
             randomizeAllBtn.classList.add('spinning');
             randomizeAllBtn.disabled = true;
             
-            // Build query string with stratagem options
+            // Build query string with stratagem options and warbond filter
             const queryParams = new URLSearchParams();
             queryParams.append('defense', stratagemOptions.defense);
             queryParams.append('eagles', stratagemOptions.eagles);
             queryParams.append('orbitals', stratagemOptions.orbitals);
             queryParams.append('support', stratagemOptions.support);
+            
+            // Add warbond filter
+            if (selectedWarbonds.size > 0) {
+                queryParams.append('warbonds', Array.from(selectedWarbonds).join(','));
+            }
+            
             // Add timestamp to prevent caching
             queryParams.append('t', Date.now());
             
@@ -189,11 +311,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let url = `/api/random/${type}`;
             
-            // Add stratagem options if type is 'stratagems'
+            // Add stratagem options if type is 'stratagems' and warbond filter for all types
             const queryParams = new URLSearchParams();
             
             // Add timestamp to prevent caching
             queryParams.append('t', Date.now());
+            
+            // Add warbond filter for all item types
+            if (selectedWarbonds.size > 0) {
+                queryParams.append('warbonds', Array.from(selectedWarbonds).join(','));
+            }
             
             if (type === 'stratagems') {
                 queryParams.append('defense', stratagemOptions.defense);
@@ -466,13 +593,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .filter(name => name !== '');
             
-            // Build query string with stratagem options and current stratagems
+            // Build query string with stratagem options, warbond filter, and current stratagems
             const queryParams = new URLSearchParams();
             queryParams.append('defense', stratagemOptions.defense);
             queryParams.append('eagles', stratagemOptions.eagles);
             queryParams.append('orbitals', stratagemOptions.orbitals);
             queryParams.append('support', stratagemOptions.support);
             queryParams.append('index', index);
+            
+            // Add warbond filter
+            if (selectedWarbonds.size > 0) {
+                queryParams.append('warbonds', Array.from(selectedWarbonds).join(','));
+            }
+            
             // Add timestamp to prevent caching
             queryParams.append('t', Date.now());
             
@@ -588,12 +721,40 @@ document.addEventListener('DOMContentLoaded', () => {
         getRandomItem('stratagems', document.querySelector('.roll-btn[data-type="stratagems"]'));
     });
     
+    // Warbond filter modal event listeners
+    warbondFilterBtn.addEventListener('click', () => {
+        warbondFilterModal.style.display = 'block';
+    });
+    
+    closeWarbondModalBtn.addEventListener('click', () => {
+        warbondFilterModal.style.display = 'none';
+    });
+    
+    applyWarbondFilterBtn.addEventListener('click', () => {
+        console.log("Applied warbond filter:", Array.from(selectedWarbonds));
+        warbondFilterModal.style.display = 'none';
+        
+        // Optional: Show a message about how many warbonds are selected
+        if (selectedWarbonds.size === 0) {
+            alert('Warning: No warbonds selected. All randomization will be disabled until you select at least one warbond.');
+        }
+    });
+    
+    selectAllWarbandsBtn.addEventListener('click', selectAllWarbonds);
+    deselectAllWarbandsBtn.addEventListener('click', deselectAllWarbonds);
+    
     // Close modal when clicking outside of it
     window.addEventListener('click', (event) => {
         if (event.target === stratagemsOptionsModal) {
             stratagemsOptionsModal.style.display = 'none';
         }
+        if (event.target === warbondFilterModal) {
+            warbondFilterModal.style.display = 'none';
+        }
     });
+    
+    // Initialize warbonds on page load
+    loadWarbonds();
     
     // Add CSS for disabled options
     const style = document.createElement('style');

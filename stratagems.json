@@ -313,6 +313,21 @@
       "name": "LIFT-182 Warp Pack",
       "warbond": "Control Group",
       "icon": "/images/icons/lift-182-warp-pack.png"
+    },
+    {
+      "name": "S-11 Speargun",
+      "warbond": "Dust Devils",
+      "icon": "/images/icons/s-11-speargun.png"
+    },
+    {
+      "name": "EAT-700 Expendable Napalm",
+      "warbond": "Dust Devils",
+      "icon": "images/icons/helldivers_icon.png"
+    },
+    {
+      "name": "MS-11 Solo Silo",
+      "warbond": "Dust Devils",
+      "icon": "/images/icons/helldivers_icon.png"
     }
   ]
 } 

@@ -198,6 +198,11 @@
       "name": "M7S SMG",
       "warbond": "ODST",
       "icon": "/images/primary/M7S_SMG_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR-2 Coyote",
+      "warbond": "Dust Devils",
+      "icon": "/images/primary/AR-2_Coyote_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [
@@ -362,6 +367,11 @@
       "name": "G-31 Arc",
       "warbond": "Control Group",
       "icon": "/images/grenade/G-31_Arc_Throwable_Icon.png"
+    },
+    {
+      "name": "G-7 Pineapple",
+      "warbond": "Dust Devils",
+      "icon": "/images/grenade/G-7_Pineapple_Throwable_Weaponry.png"
     }
   ],
   "ARMOR": [
@@ -678,6 +688,18 @@
     {
       "name": "A-35 Recon Armor",
       "warbond": "ODST",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "DS-42",
+      "warbond": "Dust Devils",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "DS-191 Scorpion",
+      "warbond": "Dust Devils",
       "icon": null,
       "class": "Medium"
     }

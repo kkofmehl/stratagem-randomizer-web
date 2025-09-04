@@ -63,6 +63,11 @@
     {
       "name": "E/AT-12 Anti-Tank Placement",
       "icon": "/images/icons/eat-12-anti-tank-placement.png"
+    },
+    {
+      "name": "A/LAS-98 Laser Sentry",
+      "warbond": "Control Group",
+      "icon": "/images/icons/alas-98-laser-sentry.png"
     }
   ],
   "EAGLES": [
@@ -298,6 +303,16 @@
       "name": "GL-52 De-Escalator",
       "warbond": "Force of Law",
       "icon": "/images/icons/de-escalator.png"
+    },
+    {
+      "name": "PLAS-45 Epoch",
+      "warbond": "Control Group",
+      "icon": "/images/icons/plas-45-epoch.png"
+    },
+    {
+      "name": "LIFT-182 Warp Pack",
+      "warbond": "Control Group",
+      "icon": "/images/icons/lift-182-warp-pack.png"
     }
   ]
 } 

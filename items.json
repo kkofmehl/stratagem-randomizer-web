@@ -178,6 +178,11 @@
       "name": "AR-32 Pacifier",
       "warbond": "Force of Law",
       "icon": "/images/primary/AR-32_Pacifier_Primary_Weaponry.png"
+    },
+    {
+      "name": "VG-70 Variable",
+      "warbond": "Control Group",
+      "icon": "/images/primary/VG-70_Variable_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [
@@ -332,6 +337,11 @@
       "name": "G-109 Urchin",
       "warbond": "Force of Law",
       "icon": "/images/grenade/G-109_Urchin_Throwable_Weaponry.png"
+    },
+    {
+      "name": "G-31 Arc",
+      "warbond": "Control Group",
+      "icon": "/images/grenade/G-31_Arc_Throwable_Icon.png"
     }
   ],
   "ARMOR": [
@@ -619,6 +629,25 @@
       "warbond": "Force of Law",
       "icon": null,
       "class": "Medium"
+    },
+    {
+      "name": "AD-26 Bleeding Edge",
+      "warbond": "Control Group",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "AD-49 Apollonian",
+      "warbond": "Control Group",
+      "icon": null,
+      "class": "Heavy"
+    },    
+    {
+      "name": "AD-11 Livewire",
+      "warbond": "Control Group",
+      "icon": null,
+      "class": "Light",
+      "type": "Armor"
     }
   ],
   "BOOSTERS": [

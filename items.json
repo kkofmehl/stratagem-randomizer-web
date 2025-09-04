@@ -183,6 +183,21 @@
       "name": "VG-70 Variable",
       "warbond": "Control Group",
       "icon": "/images/primary/VG-70_Variable_Primary_Weaponry.png"
+    },
+    {
+      "name": "MA5C Assault Rifle",
+      "warbond": "ODST",
+      "icon": "/images/primary/MA5C_Assault_Rifle_Primary_Weaponry.png"
+    },
+    {
+      "name": "M90A Shotgun",
+      "warbond": "ODST",
+      "icon": "/images/primary/M90A_Shotgun_Primary_Weaponry.png"
+    },
+    {
+      "name": "M7S SMG",
+      "warbond": "ODST",
+      "icon": "/images/primary/M7S_SMG_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [
@@ -266,6 +281,11 @@
     {
       "name": "P-92 Warrent",
       "icon": "/images/secondary/P-92_Warrent_Secondary_Weaponry.png"
+    },
+    {
+      "name": "M6C/SOCOM Pistol",
+      "warbond": "ODST",
+      "icon": "/images/secondary/M6C_SOCOM_Pistol_Secondary_Weaponry.png"
     }
   ],
   "GRENADES": [
@@ -648,6 +668,18 @@
       "icon": null,
       "class": "Light",
       "type": "Armor"
+    },
+    {
+      "name": "A-9 Helljumper Body Armor",
+      "warbond": "ODST",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "A-35 Recon Armor",
+      "warbond": "ODST",
+      "icon": null,
+      "class": "Medium"
     }
   ],
   "BOOSTERS": [

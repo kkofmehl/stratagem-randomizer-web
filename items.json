@@ -183,6 +183,26 @@
       "name": "VG-70 Variable",
       "warbond": "Control Group",
       "icon": "/images/primary/VG-70_Variable_Primary_Weaponry.png"
+    },
+    {
+      "name": "MA5C Assault Rifle",
+      "warbond": "ODST",
+      "icon": "/images/primary/MA5C_Assault_Rifle_Primary_Weaponry.png"
+    },
+    {
+      "name": "M90A Shotgun",
+      "warbond": "ODST",
+      "icon": "/images/primary/M90A_Shotgun_Primary_Weaponry.png"
+    },
+    {
+      "name": "M7S SMG",
+      "warbond": "ODST",
+      "icon": "/images/primary/M7S_SMG_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR-2 Coyote",
+      "warbond": "Dust Devils",
+      "icon": "/images/primary/AR-2_Coyote_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [
@@ -266,6 +286,11 @@
     {
       "name": "P-92 Warrent",
       "icon": "/images/secondary/P-92_Warrent_Secondary_Weaponry.png"
+    },
+    {
+      "name": "M6C/SOCOM Pistol",
+      "warbond": "ODST",
+      "icon": "/images/secondary/M6C_SOCOM_Pistol_Secondary_Weaponry.png"
     }
   ],
   "GRENADES": [
@@ -342,6 +367,11 @@
       "name": "G-31 Arc",
       "warbond": "Control Group",
       "icon": "/images/grenade/G-31_Arc_Throwable_Icon.png"
+    },
+    {
+      "name": "G-7 Pineapple",
+      "warbond": "Dust Devils",
+      "icon": "/images/grenade/G-7_Pineapple_Throwable_Weaponry.png"
     }
   ],
   "ARMOR": [
@@ -648,6 +678,30 @@
       "icon": null,
       "class": "Light",
       "type": "Armor"
+    },
+    {
+      "name": "A-9 Helljumper Body Armor",
+      "warbond": "ODST",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "A-35 Recon Armor",
+      "warbond": "ODST",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "DS-42",
+      "warbond": "Dust Devils",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "DS-191 Scorpion",
+      "warbond": "Dust Devils",
+      "icon": null,
+      "class": "Medium"
     }
   ],
   "BOOSTERS": [

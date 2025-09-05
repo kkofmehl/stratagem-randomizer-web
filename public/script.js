@@ -443,15 +443,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const armorItem = document.createElement('div');
             armorItem.className = 'loadout-item-with-icon';
             
-            // Add icon if available
-            if (typeof data.armor === 'object' && data.armor.icon) {
-                const iconElement = document.createElement('img');
-                iconElement.src = data.armor.icon;
-                iconElement.alt = data.armor.name;
-                iconElement.className = 'item-icon';
-                armorItem.appendChild(iconElement);
-            }
-            
             // Create content container
             const contentContainer = document.createElement('div');
             contentContainer.className = 'item-content';
@@ -462,12 +453,26 @@ document.addEventListener('DOMContentLoaded', () => {
             nameElement.textContent = typeof data.armor === 'object' ? data.armor.name : data.armor;
             contentContainer.appendChild(nameElement);
             
-            // Add armor class if available
+            // Add armor class if available (for object data)
             if (typeof data.armor === 'object' && data.armor.class) {
+                const classContainer = document.createElement('div');
+                classContainer.className = 'armor-class-container';
+                
                 const classElement = document.createElement('span');
                 classElement.className = `armor-class armor-class-${data.armor.class.toLowerCase()}`;
                 classElement.textContent = data.armor.class;
-                contentContainer.appendChild(classElement);
+                classContainer.appendChild(classElement);
+                
+                // Add dollar sign icon for Superstore armor
+                if (data.armor.warbond === 'Superstore') {
+                    const superstoreIcon = document.createElement('span');
+                    superstoreIcon.className = 'superstore-icon';
+                    superstoreIcon.textContent = '$';
+                    superstoreIcon.title = 'Superstore Item';
+                    classContainer.appendChild(superstoreIcon);
+                }
+                
+                contentContainer.appendChild(classContainer);
             }
             
             armorItem.appendChild(contentContainer);

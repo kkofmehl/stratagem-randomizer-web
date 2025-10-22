@@ -733,6 +733,30 @@ footer {
     color: #fff;
 }
 
+/* Armor class container to hold class badge and superstore icon */
+.armor-class-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+/* Superstore dollar sign icon */
+.superstore-icon {
+    background-color: #ffd700;
+    color: #000;
+    font-size: 0.8rem;
+    padding: 2px 4px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    cursor: help;
+}
+
 /* Warbond Filter Styles */
 .warbond-filter-controls {
     display: flex;

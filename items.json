@@ -388,7 +388,8 @@
       "class": "Light"
     },
     {
-      "name": "SC-37 Legionaire",
+      "name": "SC-37 Legionnaire",
+      "warbond": "Superstore",
       "icon": null,
       "class": "Light"
     },
@@ -702,6 +703,222 @@
       "warbond": "Dust Devils",
       "icon": null,
       "class": "Medium"
+    },
+    {
+      "name": "CE-74 Breaker",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "FS-38 Eradicator",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "B-08 Light Gunner",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "CM-21 Trench Paramedic",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "DS-10 Big Game Hunter",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "CE-67 Titan",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "FS-37 Ravager",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "IE-57 Hell-Bent",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "GS-11 Democracy's Deputy",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "AD-11 Livewire",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "TR-7 Ambassador of the Brand",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "TR-9 Cavalier of Democracy",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "DP-53 Savior of the Free",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "SC-15 Drone Master",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "B-24 Enforcer",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "CE-81 Juggernaut",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "FS-34 Exterminator",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "CM-10 Clinician",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "CW-9 White Wolf",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "PH-56 Jaguar",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "I-92 Fire Fighter",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "AF-91 Field Chemist",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "UF-84 Doubt Killer",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "AC-1 Dutiful",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "TR-62 Knight",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "B-27 Fortified Commando",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "FS-61 Dreadnought",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "FS-11 Executioner",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "CM-17 Butcher",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "CE-64 Grenadier",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "CE-101 Guerilla Gorilla",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "I-44 Salamander",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "AF-52 Lockdown",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "SR-64 Cinderblock",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "RE-824 Bearer of the Standard",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "BP-77 Grand Juror",
+      "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
     }
   ],
   "BOOSTERS": [

@@ -322,12 +322,12 @@
     {
       "name": "EAT-700 Expendable Napalm",
       "warbond": "Dust Devils",
-      "icon": "images/icons/helldivers_icon.png"
+      "icon": "images/icons/expendable_napalm_Icon.png"
     },
     {
       "name": "MS-11 Solo Silo",
       "warbond": "Dust Devils",
-      "icon": "/images/icons/helldivers_icon.png"
+      "icon": "/images/icons/ms-11_Icon.png"
     }
   ]
 } 

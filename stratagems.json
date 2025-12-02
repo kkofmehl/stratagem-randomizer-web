@@ -328,6 +328,16 @@
       "name": "MS-11 Solo Silo",
       "warbond": "Dust Devils",
       "icon": "/images/icons/ms-11_Icon.png"
+    },
+    {
+      "name": "M-1000 Maxigun",
+      "warbond": "Python Commandos",
+      "icon": "/images/icons/helldivers_icon.png"
+    },
+    {
+      "name": "AX/FLAM-75 Guard Dog Hot Dog",
+      "warbond": "Python Commandos",
+      "icon": "/images/icons/ax-flam-75-guard-dog-hot-dog.png"
     }
   ]
 } 

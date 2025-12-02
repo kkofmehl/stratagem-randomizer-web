@@ -203,6 +203,11 @@
       "name": "AR-2 Coyote",
       "warbond": "Dust Devils",
       "icon": "/images/primary/AR-2_Coyote_Primary_Weaponry.png"
+    },
+    {
+      "name": "AR/GL-21 One-Two",
+      "warbond": "Python Commandos",
+      "icon": "/images/primary/AR_GL-21_One-Two_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [
@@ -291,6 +296,11 @@
       "name": "M6C/SOCOM Pistol",
       "warbond": "ODST",
       "icon": "/images/secondary/M6C_SOCOM_Pistol_Secondary_Weaponry.png"
+    },
+    { 
+      "name": "CQC-9 Defoliation Tool",
+      "warbond": "Python Commandos",
+      "icon": "/images/secondary/CQC-9_Defoliation_Tool_Secondary_Weaponry.png"
     }
   ],
   "GRENADES": [
@@ -917,6 +927,18 @@
     {
       "name": "BP-77 Grand Juror",
       "warbond": "Superstore",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "RS-20 Constrictor",
+      "warbond": "Python Commandos",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "RS-40 Beast of Prey",
+      "warbond": "Python Commandos",
       "icon": null,
       "class": "Heavy"
     }

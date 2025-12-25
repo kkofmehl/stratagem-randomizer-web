@@ -45,10 +45,12 @@
     },
     {
       "name": "StA-52 Assault Rifle",
+      "warbond": "Righteous Revenants",
       "icon": "/images/primary/StA-52_Assault_Rifle_Primary_Weaponry.png"
     },
     {
       "name": "StA-11 SMG",
+      "warbond": "Righteous Revenants",
       "icon": "/images/primary/StA-11_SMG_Primary_Weaponry.png"
     },
     {
@@ -122,6 +124,7 @@
     },
     {
       "name": "PLAS-39 Accelerator Rifle",
+      "warbond": "Righteous Revenants",
       "icon": "/images/primary/PLAS-39_Accelerator_Rifle_Primary_Weaponry.png"
     },
     {
@@ -418,11 +421,6 @@
     {
       "name": "SR-24 Street Scout",
       "warbond": "Urban Legends",
-      "icon": null,
-      "class": "Light"
-    },
-    {
-      "name": "AC-2 Obedient",
       "icon": null,
       "class": "Light"
     },
@@ -853,12 +851,6 @@
       "class": "Medium"
     },
     {
-      "name": "AC-1 Dutiful",
-      "warbond": "Superstore",
-      "icon": null,
-      "class": "Medium"
-    },
-    {
       "name": "TR-62 Knight",
       "warbond": "Superstore",
       "icon": null,
@@ -941,6 +933,18 @@
       "warbond": "Python Commandos",
       "icon": null,
       "class": "Heavy"
+    },
+    {
+      "name": "AC-1 Dutiful",
+      "warbond": "Righteous Revenants",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "AC-2 Obedient",
+      "warbond": "Righteous Revenants",
+      "icon": null,
+      "class": "Medium"
     }
   ],
   "BOOSTERS": [

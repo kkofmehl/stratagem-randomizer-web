@@ -993,6 +993,12 @@
       "warbond": "Siege Breakers",
       "icon": null,
       "class": "Light"
+    },
+    {
+      "name": "SA-8 Ram",
+      "warbond": "Siege Breakers",
+      "icon": null,
+      "class": "Heavy"
     }
   ],
   "BOOSTERS": [

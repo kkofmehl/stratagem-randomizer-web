@@ -338,6 +338,26 @@
       "name": "AX/FLAM-75 Guard Dog Hot Dog",
       "warbond": "Python Commandos",
       "icon": "/images/icons/ax-flam-75-guard-dog-hot-dog.png"
+    },
+    {
+      "name": "B/MD C4 Pack",
+      "warbond": "Redacted Regiment",
+      "icon": "/images/icons/C4_Pack_Stratagem_Icon.png"
+    },
+    {
+      "name": "CQC-20 Breaching Hammer",
+      "warbond": "Siege Breakers",
+      "icon": "/images/icons/CQC-20_Breaching_Hammer_Stratagem_Icon.png"
+    },
+    {
+      "name": "EAT-411 Leveller",
+      "warbond": "Siege Breakers",
+      "icon": "/images/icons/EAT-411_Leveller_Stratagem_Icon.png"
+    },
+    {
+      "name": "GL-28 Belt-Fed Gernade Launcher",
+      "warbond": "Siege Breakers",
+      "icon": "/images/icons/GL-28_Belf-fed_Grenade_Launcher_Stratagem_Icon.png"
     }
   ]
 } 

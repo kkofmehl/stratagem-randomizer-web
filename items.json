@@ -211,6 +211,21 @@
       "name": "AR/GL-21 One-Two",
       "warbond": "Python Commandos",
       "icon": "/images/primary/AR_GL-21_One-Two_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-72 Censor",
+      "warbond": "Redacted Regiment",
+      "icon": "/images/primary/R-72_Censor_Primary_Render.png"
+    },
+    {
+      "name": "AR-59 Suppressor",
+      "warbond": "Redacted Regiment",
+      "icon": "/images/primary/AR-59_Suppressor_Primary_Render.png"
+    },
+    {
+      "name": "LAS-16 Trident",
+      "warbond": "Siege Breakers",
+      "icon": "/images/primary/LAS-16_Trident_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [
@@ -304,6 +319,11 @@
       "name": "CQC-9 Defoliation Tool",
       "warbond": "Python Commandos",
       "icon": "/images/secondary/CQC-9_Defoliation_Tool_Secondary_Weaponry.png"
+    },
+    {
+      "name": "P-35 Re-Educator",
+      "warbond": "Redacted Regiment",
+      "icon": "/images/secondary/P-35_Re-Educator_Secondary_Render.png"
     }
   ],
   "GRENADES": [
@@ -385,6 +405,16 @@
       "name": "G-7 Pineapple",
       "warbond": "Dust Devils",
       "icon": "/images/grenade/G-7_Pineapple_Throwable_Weaponry.png"
+    },
+    {
+      "name": "TM-1 Lure Mine",
+      "warbond": "Redacted Regiment",
+      "icon": "/images/grenade/TM-1_Lure_Mine_Throwable_Render.png"
+    },
+    {
+      "name": "G/SH-39 Shield",
+      "warbond": "Siege Breakers",
+      "icon": "/images/grenade/G_SH-39_Shield_Throwable_Icon.png"
     }
   ],
   "ARMOR": [
@@ -945,6 +975,24 @@
       "warbond": "Righteous Revenants",
       "icon": null,
       "class": "Medium"
+    },
+    {
+      "name": "RS-89 Shadow Paragon",
+      "warbond": "Redacted Regiment",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "RS-67 Null Cipher",
+      "warbond": "Redacted Regiment",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "SA-7 Headfirst",
+      "warbond": "Siege Breakers",
+      "icon": null,
+      "class": "Light"
     }
   ],
   "BOOSTERS": [
@@ -1031,6 +1079,11 @@
       "name": "Stun Pods",
       "warbond": "Force of Law",
       "icon": "/images/boosters/Stun_Pods_Booster.JPG"
+    },
+    {
+      "name": "Concealed Insertion",
+      "warbond": "Redacted Regiment",
+      "icon": "/images/boosters/Concealed_Insertion_Booster_Icon.svg"
     }
   ],
   "SIDE MISSIONS": [

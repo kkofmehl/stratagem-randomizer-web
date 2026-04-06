@@ -226,6 +226,11 @@
       "name": "LAS-16 Trident",
       "warbond": "Siege Breakers",
       "icon": "/images/primary/LAS-16_Trident_Primary_Weaponry.png"
+    },
+    {
+      "name": "SMG/FLAM-34 Stoker",
+      "warbond": "Entrenched Division",
+      "icon": "/images/primary/SMGFLAM-34_Stoker_Primary_Icon.png"
     }
   ],
   "SECONDARY": [
@@ -324,6 +329,16 @@
       "name": "P-35 Re-Educator",
       "warbond": "Redacted Regiment",
       "icon": "/images/secondary/P-35_Re-Educator_Secondary_Render.png"
+    },
+    {
+      "name": "CQC-73 Entrenchment Tool",
+      "warbond": "Entrenched Division",
+      "icon": "/images/secondary/CQC-73_Entrenchment_Tool_Secondary_Render.png"
+    },
+    {
+      "name": "P-69 Veto",
+      "warbond": "Entrenched Division",
+      "icon": "/images/secondary/P-69_Veto_Secondary_Icon.png"
     }
   ],
   "GRENADES": [
@@ -415,6 +430,11 @@
       "name": "G/SH-39 Shield",
       "warbond": "Siege Breakers",
       "icon": "/images/grenade/G_SH-39_Shield_Throwable_Icon.png"
+    },
+    {
+      "name": "G-48 Giga Grenade",
+      "warbond": "Entrenched Division",
+      "icon": "/images/grenade/G-48_Giga_Grenade_Throwable_Render.png"
     }
   ],
   "ARMOR": [
@@ -999,6 +1019,18 @@
       "warbond": "Siege Breakers",
       "icon": null,
       "class": "Heavy"
+    },
+    {
+      "name": "CPH-26 Commandant",
+      "warbond": "Entrenched Division",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "CPG-48 Sapper",
+      "warbond": "Entrenched Division",
+      "icon": null,
+      "class": "Medium"
     }
   ],
   "BOOSTERS": [

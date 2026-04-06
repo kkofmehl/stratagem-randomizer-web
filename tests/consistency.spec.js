@@ -1,6 +1,33 @@
 const { test, expect } = require('@playwright/test');
+const path = require('path');
+const fs = require('fs');
+
+const loadJson = (relativePath) =>
+  JSON.parse(fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8'));
 
 test.describe('Randomizer Consistency Tests', () => {
+  test('Entrenched Division warbond data is present', () => {
+    const items = loadJson('items.json');
+    const stratagems = loadJson('stratagems.json');
+    const wb = 'Entrenched Division';
+
+    expect(items.PRIMARY.some((i) => i.name === 'SMG/FLAM-34 Stoker' && i.warbond === wb)).toBeTruthy();
+    expect(
+      items.SECONDARY.some((i) => i.name === 'CQC-73 Entrenchment Tool' && i.warbond === wb)
+    ).toBeTruthy();
+    expect(items.SECONDARY.some((i) => i.name === 'P-69 Veto' && i.warbond === wb)).toBeTruthy();
+    expect(items.GRENADES.some((i) => i.name === 'G-48 Giga Grenade' && i.warbond === wb)).toBeTruthy();
+    expect(items.ARMOR.some((i) => i.name === 'CPH-26 Commandant' && i.warbond === wb)).toBeTruthy();
+    expect(items.ARMOR.some((i) => i.name === 'CPG-48 Sapper' && i.warbond === wb)).toBeTruthy();
+
+    expect(
+      stratagems.DEFENSE.some((s) => s.name === 'A/GM-17 Gas Mortar Sentry' && s.warbond === wb)
+    ).toBeTruthy();
+    expect(
+      stratagems.SUPPORT.some((s) => s.name === 'B/FLAM-80 Cremator' && s.warbond === wb)
+    ).toBeTruthy();
+  });
+
   test('multiple randomizations should generate different loadouts', async ({ page }) => {
     await page.goto('/');
     

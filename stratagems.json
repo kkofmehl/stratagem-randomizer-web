@@ -68,6 +68,11 @@
       "name": "A/LAS-98 Laser Sentry",
       "warbond": "Control Group",
       "icon": "/images/icons/alas-98-laser-sentry.png"
+    },
+    {
+      "name": "A/GM-17 Gas Mortar Sentry",
+      "warbond": "Entrenched Division",
+      "icon": "/images/icons/agm-17-gas-mortar-sentry.png"
     }
   ],
   "EAGLES": [
@@ -358,6 +363,11 @@
       "name": "GL-28 Belt-Fed Gernade Launcher",
       "warbond": "Siege Breakers",
       "icon": "/images/icons/GL-28_Belf-fed_Grenade_Launcher_Stratagem_Icon.png"
+    },
+    {
+      "name": "B/FLAM-80 Cremator",
+      "warbond": "Entrenched Division",
+      "icon": "/images/icons/b-flam-80-cremator.png"
     }
   ]
 } 

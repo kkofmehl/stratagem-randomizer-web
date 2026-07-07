@@ -368,6 +368,21 @@
       "name": "B/FLAM-80 Cremator",
       "warbond": "Entrenched Division",
       "icon": "/images/icons/b-flam-80-cremator.png"
+    },
+    {
+      "name": "MGX-42 Bullet Storm",
+      "warbond": "Exo Experts",
+      "icon": "/images/icons/mgx-42-bullet-storm.png"
+    },
+    {
+      "name": "EXO-51 Lumberer Exosuit",
+      "warbond": "Exo Experts",
+      "icon": "/images/icons/exo-51-lumberer-exosuit.png"
+    },
+    {
+      "name": "EXO-55 Breakthrough Exosuit",
+      "warbond": "Exo Experts",
+      "icon": "/images/icons/exo-55-breakthrough-exosuit.png"
     }
   ]
 } 

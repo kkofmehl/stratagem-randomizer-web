@@ -231,6 +231,11 @@
       "name": "SMG/FLAM-34 Stoker",
       "warbond": "Entrenched Division",
       "icon": "/images/primary/SMGFLAM-34_Stoker_Primary_Icon.png"
+    },
+    {
+      "name": "SMG-203 Gallant",
+      "warbond": "Exo Experts",
+      "icon": "/images/primary/SMG-203_Gallant_Primary_Icon.png"
     }
   ],
   "SECONDARY": [
@@ -339,6 +344,11 @@
       "name": "P-69 Veto",
       "warbond": "Entrenched Division",
       "icon": "/images/secondary/P-69_Veto_Secondary_Icon.png"
+    },
+    {
+      "name": "P-33 Missile Pistol",
+      "warbond": "Exo Experts",
+      "icon": "/images/secondary/P-33_Missile_Pistol_Secondary_Icon.png"
     }
   ],
   "GRENADES": [
@@ -1031,6 +1041,18 @@
       "warbond": "Entrenched Division",
       "icon": null,
       "class": "Medium"
+    },
+    {
+      "name": "O-3 Free Spirit",
+      "warbond": "Exo Experts",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "O-2 Heavy Operator",
+      "warbond": "Exo Experts",
+      "icon": null,
+      "class": "Heavy"
     }
   ],
   "BOOSTERS": [

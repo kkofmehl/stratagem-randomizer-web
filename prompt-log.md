@@ -58,3 +58,27 @@ All items were tagged with `"warbond": "Redacted Regiment"` to match the existin
 - Added to `stratagems.json`:
   - **SUPPORT:** MGX-42 Bullet Storm, EXO-51 Lumberer Exosuit, EXO-55 Breakthrough Exosuit
 - Added `tests/consistency.spec.js` check that these entries exist.
+
+## 2026-09-22
+
+### Add Ironclad Democracy Premium Warbond
+**Prompt:** Please add new warbond items for the Ironclad Democracy warbond. Details on this page: https://helldivers.wiki.gg/wiki/Ironclad_Democracy_Premium_Warbond I'm just interested in primary/secondary weapons, throwables, armor sets, and stratagems. (Follow-up: also add boosters.)
+
+**Actions Taken:**
+- Fetched reward tables from the Helldivers wiki for the Ironclad Democracy Premium Warbond.
+- Added to `items.json` with `"warbond": "Ironclad Democracy"`:
+  - **Primary:** AR-11 Arbitrator, GL-15 Evictor
+  - **Secondary:** P-34 Breacher
+  - **Grenades (throwables):** G-8 Immolation, G-60 Anti-Tank Seeker
+  - **Armor:** BFM-16 Tanker (Light), BFM-220 Ironclad (Heavy)
+  - **Boosters:** Surplus EAT Allocation, Integrated Extinguishers
+- Stratagems: none in this warbond (per wiki).
+- Downloaded matching wiki icons into `public/images/{primary,secondary,grenade,boosters}/`.
+- Added `tests/consistency.spec.js` check that these entries exist.
+
+### Explore warbond item storage and display
+**Prompt:** Explore the codebase at c:\personalGitHub\strategem-randomizer to understand how warbond items are stored and displayed. Focus on: (1) stratagems definition, (2) weapons/throwables/armor, (3) warbonds/categories, (4) existing warbond addition patterns, (5) icon naming conventions. Return key paths, schemas, icon refs, and tests to update.
+
+**Actions Taken:**
+- Explored `items.json`, `stratagems.json`, `server.js`, `public/script.js`, and Playwright tests.
+- Documented schemas, warbond discovery via `/api/warbonds`, icon path conventions, and consistency-test patterns from Entrenched Division / Exo Experts.

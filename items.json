@@ -236,6 +236,16 @@
       "name": "SMG-203 Gallant",
       "warbond": "Exo Experts",
       "icon": "/images/primary/SMG-203_Gallant_Primary_Icon.png"
+    },
+    {
+      "name": "AR-11 Arbitrator",
+      "warbond": "Ironclad Democracy",
+      "icon": "/images/primary/AR-11_Arbitrator_Primary_Render.png"
+    },
+    {
+      "name": "GL-15 Evictor",
+      "warbond": "Ironclad Democracy",
+      "icon": "/images/primary/GL-15_Evictor_Primary_Render.png"
     }
   ],
   "SECONDARY": [
@@ -349,6 +359,11 @@
       "name": "P-33 Missile Pistol",
       "warbond": "Exo Experts",
       "icon": "/images/secondary/P-33_Missile_Pistol_Secondary_Icon.png"
+    },
+    {
+      "name": "P-34 Breacher",
+      "warbond": "Ironclad Democracy",
+      "icon": "/images/secondary/P-34_Breacher_Secondary_Render.png"
     }
   ],
   "GRENADES": [
@@ -445,6 +460,16 @@
       "name": "G-48 Giga Grenade",
       "warbond": "Entrenched Division",
       "icon": "/images/grenade/G-48_Giga_Grenade_Throwable_Render.png"
+    },
+    {
+      "name": "G-8 Immolation",
+      "warbond": "Ironclad Democracy",
+      "icon": "/images/grenade/G-8_Immolation_Throwable_Render.png"
+    },
+    {
+      "name": "G-60 Anti-Tank Seeker",
+      "warbond": "Ironclad Democracy",
+      "icon": "/images/grenade/G-60_Anti-Tank_Seeker_Throwable_Render.png"
     }
   ],
   "ARMOR": [
@@ -1053,6 +1078,18 @@
       "warbond": "Exo Experts",
       "icon": null,
       "class": "Heavy"
+    },
+    {
+      "name": "BFM-16 Tanker",
+      "warbond": "Ironclad Democracy",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "BFM-220 Ironclad",
+      "warbond": "Ironclad Democracy",
+      "icon": null,
+      "class": "Heavy"
     }
   ],
   "BOOSTERS": [
@@ -1144,6 +1181,16 @@
       "name": "Concealed Insertion",
       "warbond": "Redacted Regiment",
       "icon": "/images/boosters/Concealed_Insertion_Booster_Icon.svg"
+    },
+    {
+      "name": "Surplus EAT Allocation",
+      "warbond": "Ironclad Democracy",
+      "icon": "/images/boosters/Surplus_EAT_Allocation_Booster_Icon.png"
+    },
+    {
+      "name": "Integrated Extinguishers",
+      "warbond": "Ironclad Democracy",
+      "icon": "/images/boosters/Integrated_Extinguishers_Booster_Icon.png"
     }
   ],
   "SIDE MISSIONS": [

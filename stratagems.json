@@ -372,17 +372,17 @@
     {
       "name": "MGX-42 Bullet Storm",
       "warbond": "Exo Experts",
-      "icon": "/images/icons/mgx-42-bullet-storm.png"
+      "icon": "/images/icons/Mgx-42-bullet-storm1.png"
     },
     {
       "name": "EXO-51 Lumberer Exosuit",
       "warbond": "Exo Experts",
-      "icon": "/images/icons/exo-51-lumberer-exosuit.png"
+      "icon": "/images/icons/Exo-51-lumberer-exosuit1.png"
     },
     {
       "name": "EXO-55 Breakthrough Exosuit",
       "warbond": "Exo Experts",
-      "icon": "/images/icons/exo-55-breakthrough-exosuit.png"
+      "icon": "/images/icons/Exo-55-breakthrough-exosuit1.png"
     }
   ]
 } 

@@ -28,6 +28,33 @@ test.describe('Randomizer Consistency Tests', () => {
     ).toBeTruthy();
   });
 
+  test('Exo Experts warbond data is present', () => {
+    const items = loadJson('items.json');
+    const stratagems = loadJson('stratagems.json');
+    const wb = 'Exo Experts';
+
+    expect(items.PRIMARY.some((i) => i.name === 'SMG-203 Gallant' && i.warbond === wb)).toBeTruthy();
+    expect(
+      items.SECONDARY.some((i) => i.name === 'P-33 Missile Pistol' && i.warbond === wb)
+    ).toBeTruthy();
+    expect(
+      items.ARMOR.some((i) => i.name === 'O-3 Free Spirit' && i.warbond === wb && i.class === 'Light')
+    ).toBeTruthy();
+    expect(
+      items.ARMOR.some((i) => i.name === 'O-2 Heavy Operator' && i.warbond === wb && i.class === 'Heavy')
+    ).toBeTruthy();
+
+    expect(
+      stratagems.SUPPORT.some((s) => s.name === 'MGX-42 Bullet Storm' && s.warbond === wb)
+    ).toBeTruthy();
+    expect(
+      stratagems.SUPPORT.some((s) => s.name === 'EXO-51 Lumberer Exosuit' && s.warbond === wb)
+    ).toBeTruthy();
+    expect(
+      stratagems.SUPPORT.some((s) => s.name === 'EXO-55 Breakthrough Exosuit' && s.warbond === wb)
+    ).toBeTruthy();
+  });
+
   test('multiple randomizations should generate different loadouts', async ({ page }) => {
     await page.goto('/');
     

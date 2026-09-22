@@ -246,6 +246,11 @@
       "name": "GL-15 Evictor",
       "warbond": "Ironclad Democracy",
       "icon": "/images/primary/GL-15_Evictor_Primary_Render.png"
+    },
+    {
+      "name": "R/40-K Hot-Shot Marksman Rifle",
+      "warbond": "Castellan's Creed",
+      "icon": "/images/primary/R-40-K_Hot-Shot_Primary_Render.png"
     }
   ],
   "SECONDARY": [
@@ -364,6 +369,11 @@
       "name": "P-34 Breacher",
       "warbond": "Ironclad Democracy",
       "icon": "/images/secondary/P-34_Breacher_Secondary_Render.png"
+    },
+    {
+      "name": "P/40-K Bolt Pistol",
+      "warbond": "Castellan's Creed",
+      "icon": "/images/secondary/P-40-K_Bolt_Pistol_Secondary_Render.png"
     }
   ],
   "GRENADES": [
@@ -470,6 +480,11 @@
       "name": "G-60 Anti-Tank Seeker",
       "warbond": "Ironclad Democracy",
       "icon": "/images/grenade/G-60_Anti-Tank_Seeker_Throwable_Render.png"
+    },
+    {
+      "name": "G/40-K Melta Mine",
+      "warbond": "Castellan's Creed",
+      "icon": "/images/grenade/G-40-K_Melta_Mine_Throwable_Render.png"
     }
   ],
   "ARMOR": [
@@ -1088,6 +1103,18 @@
     {
       "name": "BFM-220 Ironclad",
       "warbond": "Ironclad Democracy",
+      "icon": null,
+      "class": "Heavy"
+    },
+    {
+      "name": "TG-8 Sharpshooter",
+      "warbond": "Castellan's Creed",
+      "icon": null,
+      "class": "Medium"
+    },
+    {
+      "name": "TG-122 Demo-Trooper",
+      "warbond": "Castellan's Creed",
       "icon": null,
       "class": "Heavy"
     }

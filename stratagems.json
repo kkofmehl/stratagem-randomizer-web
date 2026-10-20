@@ -383,6 +383,14 @@
       "name": "EXO-55 Breakthrough Exosuit",
       "warbond": "Exo Experts",
       "icon": "/images/icons/Exo-55-breakthrough-exosuit1.png"
+    },
+    {
+      "name": "Bastion MK XVI",
+      "icon": "/images/icons/helldivers_icon.png"
+    },
+    {
+      "name": "Supply FRV",
+      "icon": "/images/icons/helldivers_icon.png"
     }
   ]
 } 

@@ -198,6 +198,11 @@
       "icon": "/images/primary/M90A_Shotgun_Primary_Weaponry.png"
     },
     {
+      "name": "SG-97 Sweeper",
+      "warbond": "Superstore",
+      "icon": "/images/primary/SG-97_Shotgun_Primary_Weaponry.png"
+    },
+    {
       "name": "M7S SMG",
       "warbond": "ODST",
       "icon": "/images/primary/M7S_SMG_Primary_Weaponry.png"
@@ -251,6 +256,16 @@
       "name": "R/40-K Hot-Shot Marksman Rifle",
       "warbond": "Castellan's Creed",
       "icon": "/images/primary/R-40-K_Hot-Shot_Primary_Render.png"
+    },
+    {
+      "name": "DBS-2 Double Freedom Shotgun",
+      "warbond": "Superstore",
+      "icon": "/images/primary/DBS-2_Shotgun_Primary_Weaponry.png"
+    },
+    {
+      "name": "LAS-12 Sai",
+      "warbond": "Superstore",
+      "icon": "/images/primary/LAS-12_Sai_Primary_Weaponry.png"
     }
   ],
   "SECONDARY": [

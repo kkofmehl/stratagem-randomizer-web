@@ -59,6 +59,39 @@ All items were tagged with `"warbond": "Redacted Regiment"` to match the existin
   - **SUPPORT:** MGX-42 Bullet Storm, EXO-51 Lumberer Exosuit, EXO-55 Breakthrough Exosuit
 - Added `tests/consistency.spec.js` check that these entries exist.
 
+## 2026-10-20
+
+### Fix M-1000 Maxigun stratagem icon
+**Prompt:** pull the icon for this gun and replace the use of helldivers_icon in @stratagems.json https://helldivers.wiki.gg/wiki/M-1000_Maxigun
+
+**Actions Taken:**
+- Downloaded `Maxigun_Stratagem_Icon.svg` from the Helldivers wiki.
+- Updated M-1000 Maxigun in `stratagems.json` to use `/images/icons/Maxigun_Stratagem_Icon.svg`.
+
+### Fix Maelstrom and Supply FRV stratagem icons
+**Prompt:** please find the Maelstrom Tank and Supply FRV stratagems on the wiki, pull the icons, and update the icon path in @stratagems.json if needed
+
+**Actions Taken:**
+- Located wiki pages: [TD-110 Maelstrom](https://helldivers.wiki.gg/wiki/TD-110_Maelstrom), [M-103 Supply FRV](https://helldivers.wiki.gg/wiki/M-103_Supply_FRV), [TD-220 Bastion MK XVI](https://helldivers.wiki.gg/wiki/TD-220_Bastion_MK_XVI).
+- Downloaded wiki stratagem SVGs: `Maelstrom_Stratagem_Icon.svg`, `Supply_FRV_Stratagem_Icon.svg`, `Bastion_MK_XVI_Stratagem_Icon.svg`.
+- Added `Maelstrom` SUPPORT entry; pointed Supply FRV at `.svg`; fixed Bastion MK XVI (was incorrectly pointing at a missing Maelstrom `.png`).
+
+### Add Scope of Authority Premium Warbond
+**Prompt:** Same thing for https://helldivers.wiki.gg/wiki/Scope_of_Authority_Premium_Warbond
+
+**Actions Taken:**
+- Fetched reward tables from the Helldivers wiki for the Scope of Authority Premium Warbond.
+- Added to `items.json` with `"warbond": "Scope of Authority"`:
+  - **Primary:** R-40 Sightliner
+  - **Secondary:** P-44 Mist
+  - **Grenades (throwables):** G-11 Caltrops
+  - **Armor:** SS-33 Mimetic Marshal (Light), SS-15 Focal Point (Medium)
+  - **Boosters:** none in this warbond
+- Added to `stratagems.json`:
+  - **SUPPORT:** AMW-20 Apex, LAS-44 Nova
+- Downloaded matching wiki icons into `public/images/{primary,secondary,grenade,icons}/`.
+- Added `tests/consistency.spec.js` check that these entries exist.
+
 ## 2026-09-22
 
 ### Add Castellan's Creed Legendary Warbond

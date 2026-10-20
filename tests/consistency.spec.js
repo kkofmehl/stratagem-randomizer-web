@@ -55,6 +55,24 @@ test.describe('Randomizer Consistency Tests', () => {
     ).toBeTruthy();
   });
 
+  test('Scope of Authority warbond data is present', () => {
+    const items = loadJson('items.json');
+    const stratagems = loadJson('stratagems.json');
+    const wb = 'Scope of Authority';
+
+    expect(items.PRIMARY.some((i) => i.name === 'R-40 Sightliner' && i.warbond === wb)).toBeTruthy();
+    expect(items.SECONDARY.some((i) => i.name === 'P-44 Mist' && i.warbond === wb)).toBeTruthy();
+    expect(items.GRENADES.some((i) => i.name === 'G-11 Caltrops' && i.warbond === wb)).toBeTruthy();
+    expect(
+      items.ARMOR.some((i) => i.name === 'SS-33 Mimetic Marshal' && i.warbond === wb && i.class === 'Light')
+    ).toBeTruthy();
+    expect(
+      items.ARMOR.some((i) => i.name === 'SS-15 Focal Point' && i.warbond === wb && i.class === 'Medium')
+    ).toBeTruthy();
+    expect(stratagems.SUPPORT.some((s) => s.name === 'AMW-20 Apex' && s.warbond === wb)).toBeTruthy();
+    expect(stratagems.SUPPORT.some((s) => s.name === 'LAS-44 Nova' && s.warbond === wb)).toBeTruthy();
+  });
+
   test('multiple randomizations should generate different loadouts', async ({ page }) => {
     await page.goto('/');
     

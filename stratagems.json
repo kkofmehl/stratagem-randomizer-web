@@ -62,6 +62,7 @@
     },
     {
       "name": "E/AT-12 Anti-Tank Placement",
+      "warbond": "Urban Legends",
       "icon": "/images/icons/eat-12-anti-tank-placement.png"
     },
     {
@@ -285,11 +286,6 @@
       "icon": "/images/icons/flamethrower-sentry.png"
     },
     {
-      "name": "E/AT-12 Anti-Tank Emplacement",
-      "warbond": "Urban Legends",
-      "icon": "/images/icons/anti-tank-placement.png"
-    },
-    {
       "name": "Hover Pack",
       "warbond": "Borderline Justice",
       "icon": "/images/icons/hover-pack.png"
@@ -337,7 +333,7 @@
     {
       "name": "M-1000 Maxigun",
       "warbond": "Python Commandos",
-      "icon": "/images/icons/helldivers_icon.png"
+      "icon": "/images/icons/Maxigun_Stratagem_Icon.svg"
     },
     {
       "name": "AX/FLAM-75 Guard Dog Hot Dog",
@@ -386,16 +382,30 @@
     },
     {
       "name": "Bastion MK XVI",
-      "icon": "/images/icons/Maelstrom_Stratagem_Icon.png"
+      "icon": "/images/icons/Bastion_MK_XVI_Stratagem_Icon.svg"
+    },
+    {
+      "name": "Maelstrom",
+      "icon": "/images/icons/Maelstrom_Stratagem_Icon.svg"
     },
     {
       "name": "Supply FRV",
-      "icon": "/images/icons/Supply_FRV_Stratagem_Icon.png"
+      "icon": "/images/icons/Supply_FRV_Stratagem_Icon.svg"
     },
     {
       "name": "40-K Meltagun",
       "warbond": "Castellan's Creed",
       "icon": "/images/icons/40-K_Meltagun_Support_Render.png"
+    },
+    {
+      "name": "AMW-20 Apex",
+      "warbond": "Scope of Authority",
+      "icon": "/images/icons/Apex_Stratagem_Icon.svg"
+    },
+    {
+      "name": "LAS-44 Nova",
+      "warbond": "Scope of Authority",
+      "icon": "/images/icons/Nova_Stratagem_Icon.svg"
     }
   ]
 } 

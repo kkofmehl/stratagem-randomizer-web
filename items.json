@@ -266,6 +266,11 @@
       "name": "LAS-12 Sai",
       "warbond": "Superstore",
       "icon": "/images/primary/LAS-12_Sai_Primary_Weaponry.png"
+    },
+    {
+      "name": "R-40 Sightliner",
+      "warbond": "Scope of Authority",
+      "icon": "/images/primary/R-40_Sightliner_Primary_Render.png"
     }
   ],
   "SECONDARY": [
@@ -389,6 +394,11 @@
       "name": "P/40-K Bolt Pistol",
       "warbond": "Castellan's Creed",
       "icon": "/images/secondary/P-40-K_Bolt_Pistol_Secondary_Render.png"
+    },
+    {
+      "name": "P-44 Mist",
+      "warbond": "Scope of Authority",
+      "icon": "/images/secondary/P-44_Mist_Secondary_Render.png"
     }
   ],
   "GRENADES": [
@@ -500,6 +510,11 @@
       "name": "G/40-K Melta Mine",
       "warbond": "Castellan's Creed",
       "icon": "/images/grenade/G-40-K_Melta_Mine_Throwable_Render.png"
+    },
+    {
+      "name": "G-11 Caltrops",
+      "warbond": "Scope of Authority",
+      "icon": "/images/grenade/G-11_Caltrops_Throwable_Render.png"
     }
   ],
   "ARMOR": [
@@ -1132,6 +1147,18 @@
       "warbond": "Castellan's Creed",
       "icon": null,
       "class": "Heavy"
+    },
+    {
+      "name": "SS-33 Mimetic Marshal",
+      "warbond": "Scope of Authority",
+      "icon": null,
+      "class": "Light"
+    },
+    {
+      "name": "SS-15 Focal Point",
+      "warbond": "Scope of Authority",
+      "icon": null,
+      "class": "Medium"
     }
   ],
   "BOOSTERS": [

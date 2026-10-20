@@ -61,6 +61,22 @@ All items were tagged with `"warbond": "Redacted Regiment"` to match the existin
 
 ## 2026-09-22
 
+### Add Castellan's Creed Legendary Warbond
+**Prompt:** Same thing for https://helldivers.wiki.gg/wiki/Castellan%27s_Creed_Legendary_Warbond
+
+**Actions Taken:**
+- Fetched reward tables from the Helldivers wiki for the Castellan's Creed Legendary Warbond.
+- Added to `items.json` with `"warbond": "Castellan's Creed"`:
+  - **Primary:** R/40-K Hot-Shot Marksman Rifle
+  - **Secondary:** P/40-K Bolt Pistol
+  - **Grenades (throwables):** G/40-K Melta Mine
+  - **Armor:** TG-8 Sharpshooter (Medium), TG-122 Demo-Trooper (Heavy)
+  - **Boosters:** none in this warbond
+- Added to `stratagems.json`:
+  - **SUPPORT:** 40-K Meltagun
+- Downloaded matching wiki icons into `public/images/{primary,secondary,grenade,icons}/`.
+- Added `tests/consistency.spec.js` check that these entries exist.
+
 ### Add Ironclad Democracy Premium Warbond
 **Prompt:** Please add new warbond items for the Ironclad Democracy warbond. Details on this page: https://helldivers.wiki.gg/wiki/Ironclad_Democracy_Premium_Warbond I'm just interested in primary/secondary weapons, throwables, armor sets, and stratagems. (Follow-up: also add boosters.)
 

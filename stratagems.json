@@ -391,6 +391,11 @@
     {
       "name": "Supply FRV",
       "icon": "/images/icons/helldivers_icon.png"
+    },
+    {
+      "name": "40-K Meltagun",
+      "warbond": "Castellan's Creed",
+      "icon": "/images/icons/40-K_Meltagun_Support_Render.png"
     }
   ]
 } 
